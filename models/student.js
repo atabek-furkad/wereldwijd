@@ -22,7 +22,7 @@ const studentSchema = new mongoose.Schema({
   },
   coverImageName: {
     type: String,
-    required: true,
+    // required: true,
   },
 })
 

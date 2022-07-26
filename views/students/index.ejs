@@ -1,7 +1,13 @@
 <h2>Search Students</h2>
 <form action="/students" method="GET">
-  <label>Name</label>
-  <input type="text" name="name" value="<%= searchOptions.name %>" />
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= searchOptions.name %>" />
+  </div>
+  <div>
+    <label>Country</label>
+    <input type="text" name="country" value="<%= searchOptions.country %>" />
+  </div>
   <button type="submit">Search</button>
 </form>
 

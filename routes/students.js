@@ -5,9 +5,13 @@ const Student = require('../models/student')
 // all students route
 router.get('/', async (req, res) => {
   let searchOptions = {}
-  if (req.query.name != null && req.query.name !== '') {
+  if (req.query.name != null && req.query.name != '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
   }
+  if (req.query.country != null && req.query.country != '') {
+    searchOptions.country = new RegExp(req.query.country, 'i')
+  }
+  console.log('searchOptions', searchOptions)
   try {
     const students = await Student.find(searchOptions)
     res.render('students/index', {

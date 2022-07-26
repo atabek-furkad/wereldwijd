@@ -6,5 +6,7 @@
 </form>
 
 <% students.forEach(student => { %>
-<div><%= student.name%></div>
+<div>
+  <%= student.name%> <%= student.preferredLanguage %> <%= student.country %>
+</div>
 <% }) %>

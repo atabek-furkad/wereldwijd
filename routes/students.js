@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs')
 const Student = require('../models/student')
 const uploadPath = path.join('public', Student.coverImageBasePath)
 const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif']
@@ -51,11 +52,20 @@ router.post('/', upload.single('cover'), async (req, res) => {
     const newStudent = await student.save()
     res.redirect('students')
   } catch (error) {
+    if (student.coverImageName != null) {
+      removeBookCover(student.coverImageName)
+    }
     res.render('students/new', {
       student: student,
       errorMessage: 'Error creating Student',
     })
   }
 })
+
+function removeBookCover(fileName) {
+  fs.unlink(path.join(uploadPath, fileName), (error) => {
+    if (error) console.error(error)
+  })
+}
 
 module.exports = router

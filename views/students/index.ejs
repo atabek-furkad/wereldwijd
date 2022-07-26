@@ -14,5 +14,6 @@
 <% students.forEach(student => { %>
 <div>
   <%= student.name%> <%= student.preferredLanguage %> <%= student.country %>
+  <img height="200" width="150" src="<%= student.coverImagePath %>" alt="" />
 </div>
 <% }) %>

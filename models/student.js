@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const path = require('path')
 
 const coverImageBasePath = 'uploads/studentCovers'
 
@@ -24,6 +25,12 @@ const studentSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+})
+
+studentSchema.virtual('coverImagePath').get(function () {
+  if (this.coverImageName != null) {
+    return path.join('/', coverImageBasePath, this.coverImageName)
+  }
 })
 
 module.exports = mongoose.model('Student', studentSchema)

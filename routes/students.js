@@ -1,6 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const multer = require('multer')
+const path = require('path')
 const Student = require('../models/student')
+const uploadPath = path.join('public', Student.coverImageBasePath)
+const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif']
+const upload = multer({
+  dest: uploadPath,
+  fileFilter: (req, file, callback) => {
+    callback(null, imageMimeTypes.includes(file.mimetype))
+  },
+})
 
 // all students route
 router.get('/', async (req, res) => {
@@ -29,11 +39,13 @@ router.get('/new', (req, res) => {
 })
 
 // create student route
-router.post('/', async (req, res) => {
+router.post('/', upload.single('cover'), async (req, res) => {
+  const fileName = req.file != null ? req.file.filename : null
   const student = new Student({
     name: req.body.name,
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
+    coverImageName: fileName,
   })
   try {
     const newStudent = await student.save()

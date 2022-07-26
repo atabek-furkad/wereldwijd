@@ -1,1 +1,10 @@
-All Students
+<h2>Search Students</h2>
+<form action="/students" method="GET">
+  <label>Name</label>
+  <input type="text" name="name" value="<%= searchOptions.name %>" />
+  <button type="submit">Search</button>
+</form>
+
+<% students.forEach(student => { %>
+<div><%= student.name%></div>
+<% }) %>

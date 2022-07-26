@@ -3,8 +3,20 @@ const router = express.Router()
 const Student = require('../models/student')
 
 // all students route
-router.get('/', (req, res) => {
-  res.render('students/index')
+router.get('/', async (req, res) => {
+  let searchOptions = {}
+  if (req.query.name != null && req.query.name !== '') {
+    searchOptions.name = new RegExp(req.query.name, 'i')
+  }
+  try {
+    const students = await Student.find(searchOptions)
+    res.render('students/index', {
+      students: students,
+      searchOptions: req.query,
+    })
+  } catch (error) {
+    res.redirect('/')
+  }
 })
 
 // new student route
@@ -19,7 +31,6 @@ router.post('/', async (req, res) => {
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
   })
-
   try {
     const newStudent = await student.save()
     res.redirect('students')

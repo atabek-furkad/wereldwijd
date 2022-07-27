@@ -1,17 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
+
 const Student = require('../models/student')
-const uploadPath = path.join('public', Student.coverImageBasePath)
-const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif']
-const upload = multer({
-  dest: uploadPath,
-  fileFilter: (req, file, callback) => {
-    callback(null, imageMimeTypes.includes(file.mimetype))
-  },
-})
+
+const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg']
 
 // all students route
 router.get('/', async (req, res) => {
@@ -40,23 +32,20 @@ router.get('/new', (req, res) => {
 })
 
 // create student route
-router.post('/', upload.single('cover'), async (req, res) => {
-  const fileName = req.file != null ? req.file.filename : null
+router.post('/', async (req, res) => {
   const student = new Student({
     name: req.body.name,
     birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
-    coverImageName: fileName,
   })
-  // console.log('req.body.birthDate', req.body.birthDate)
+
+  saveCover(student, req.body.cover)
+
   try {
     const newStudent = await student.save()
     res.redirect('students')
   } catch (error) {
-    if (student.coverImageName != null) {
-      removeBookCover(student.coverImageName)
-    }
     res.render('students/new', {
       student: student,
       errorMessage: 'Error creating Student',
@@ -64,10 +53,13 @@ router.post('/', upload.single('cover'), async (req, res) => {
   }
 })
 
-function removeBookCover(fileName) {
-  fs.unlink(path.join(uploadPath, fileName), (error) => {
-    if (error) console.error(error)
-  })
+function saveCover(student, coverEncoded) {
+  if (coverEncoded == null) return
+  const cover = JSON.parse(coverEncoded)
+  if (cover != null && imageMimeTypes.includes(cover.type)) {
+    student.coverImage = new Buffer.from(cover.data, 'base64')
+    student.coverImageType = cover.type
+  }
 }
 
 module.exports = router

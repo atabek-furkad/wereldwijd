@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
   if (req.query.country != null && req.query.country != '') {
     searchOptions.country = new RegExp(req.query.country, 'i')
   }
-  console.log('searchOptions', searchOptions)
   try {
     const students = await Student.find(searchOptions)
     res.render('students/index', {
@@ -37,6 +36,7 @@ router.get('/', async (req, res) => {
 // new student route
 router.get('/new', (req, res) => {
   res.render('students/new', { student: new Student() })
+  console.log('new Student', new Student())
 })
 
 // create student route
@@ -44,10 +44,12 @@ router.post('/', upload.single('cover'), async (req, res) => {
   const fileName = req.file != null ? req.file.filename : null
   const student = new Student({
     name: req.body.name,
+    birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
     coverImageName: fileName,
   })
+  // console.log('req.body.birthDate', req.body.birthDate)
   try {
     const newStudent = await student.save()
     res.redirect('students')

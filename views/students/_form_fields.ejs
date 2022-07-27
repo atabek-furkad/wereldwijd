@@ -1,6 +1,7 @@
 <label>Name</label> <input type="text" name="name" value="<%=student.name %>" />
 <br>
 <label>Date of Birth</label>
+<input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
 <br>
 <label>Preferred Language</label> <input type="text" name="preferredLanguage" value="<%=student.preferredLanguage %>"></input>
 <br>

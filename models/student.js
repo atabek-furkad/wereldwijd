@@ -8,10 +8,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // birthDate: {
-  //   type: Date,
-  //   required: true,
-  // },
+  birthDate: {
+    type: Date,
+    required: true,
+  },
   preferredLanguage: {
     type: String,
     required: true,
@@ -34,12 +34,6 @@ const studentSchema = new mongoose.Schema({
 studentSchema.virtual('coverImagePath').get(function () {
   if (this.coverImageName != null) {
     return path.join('/', coverImageBasePath, this.coverImageName)
-  } else {
-    return path.join(
-      '/',
-      coverImageBasePath,
-      '8a3b5e9cf82366375f7386c8b1f67277',
-    )
   }
 })
 

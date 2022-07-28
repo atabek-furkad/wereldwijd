@@ -25,9 +25,8 @@
 
   <a href="/students/<%= student.id %>/edit">Edit</a>
 
-  <form method="POST" action="/students/<%=student.id %>?_method=DELETE ">
-    <button type="submit">Delete</button>
-  </form>
+  <%- include("../partials/deleteForm.ejs", { url: `/students/${student.id}` })
+  %>
 </div>
 <br />
 <br />

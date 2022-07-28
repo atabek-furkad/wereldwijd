@@ -20,5 +20,15 @@
     <img height="200" width="150" src="<%= student.coverImagePath %>" alt="" />
     <% } %>
   </div>
+
+  <a href="/students/<%= student.id %>">View</a>
+
+  <a href="/students/<%= student.id %>/edit">Edit</a>
+
+  <form method="POST" action="/students/<%=student.id %>?_method=DELETE ">
+    <button type="submit">Delete</button>
+  </form>
 </div>
+<br />
+<br />
 <% }) %>

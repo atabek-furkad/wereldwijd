@@ -55,17 +55,22 @@ router.post('/', async (req, res) => {
 
 // display student by ID
 router.get('/:id', (req, res) => {
-  res.send('Show student', +req.params.id)
+  res.send('Show student ' + req.params.id)
 })
 
 // edit student by ID
 router.get('/:id/edit', (req, res) => {
-  res.send('Edit student', +req.params.id)
+  res.send('Edit student ' + req.params.id)
 })
 
 // update student by ID
 router.put('/:id', (req, res) => {
-  res.send('Update student', +req.params.id)
+  res.send('Update student ' + req.params.id)
+})
+
+// delete student by ID
+router.delete('/:id', (req, res) => {
+  res.send('Delete student ' + req.params.id)
 })
 
 function saveCover(student, coverEncoded) {

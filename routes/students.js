@@ -53,6 +53,21 @@ router.post('/', async (req, res) => {
   }
 })
 
+// display student by ID
+router.get('/:id', (req, res) => {
+  res.send('Show student', +req.params.id)
+})
+
+// edit student by ID
+router.get('/:id/edit', (req, res) => {
+  res.send('Edit student', +req.params.id)
+})
+
+// update student by ID
+router.put('/:id', (req, res) => {
+  res.send('Update student', +req.params.id)
+})
+
 function saveCover(student, coverEncoded) {
   if (coverEncoded == null) return
   const cover = JSON.parse(coverEncoded)

@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 // new student route
 router.get('/new', (req, res) => {
   res.render('students/new', { student: new Student() })
-  console.log('new Student', new Student())
+  // console.log('new Student', new Student())
 })
 
 // create student route
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 
   try {
     const newStudent = await student.save()
-    res.redirect('students')
+    res.redirect(`students/${student.id}`)
   } catch (error) {
     res.render('students/new', {
       student: student,
@@ -58,29 +58,71 @@ router.get('/:id', async (req, res) => {
   try {
     const student = await Student.findById(req.params.id)
     res.render('students/profile', {
-      student2: student,
+      student: student,
     })
   } catch (error) {
-    // res.redirect('/students')
+    res.redirect('students')
   }
-  // console.log(req.params.id)
-
-  // res.send('Show student ' + req.params.id)
 })
 
 // edit student by ID
-router.get('/:id/edit', (req, res) => {
-  res.send('Edit student ' + req.params.id)
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id)
+    res.render('students/edit', {
+      student: student,
+    })
+  } catch (error) {
+    res.redirect('/students')
+  }
 })
 
 // update student by ID
-router.put('/:id', (req, res) => {
-  res.send('Update student ' + req.params.id)
+router.put('/:id', async (req, res) => {
+  console.log('put is triggered', req.params.id)
+  let student
+  try {
+    student = await Student.findById(req.params.id)
+    student.name = req.body.name
+    student.birthDate = new Date(req.body.birthDate)
+    student.preferredLanguage = req.body.preferredLanguage
+    student.country = req.body.country
+    console.log('student', student.name)
+    console.log(req.body.cover)
+    if (req.body.cover != '') {
+      saveCover(student, req.body.cover)
+    }
+    await student.save()
+    res.redirect(`/students/${student.id}`)
+  } catch (error) {
+    if (student == null) {
+      res.redirect('/')
+      console.log('student does not exist')
+    } else {
+      res.render('students/edit', {
+        student: student,
+        errorMessage: 'Error Updating Student',
+      })
+    }
+  }
+  // res.send('Update student ' + req.params.id)
 })
 
 // delete student by ID
-router.delete('/:id', (req, res) => {
-  res.send('Delete student ' + req.params.id)
+router.delete('/:id', async (req, res) => {
+  let student
+  try {
+    student = await Student.findById(req.params.id)
+    await student.remove()
+    res.redirect('/students')
+  } catch (error) {
+    if (student == null) {
+      res.redirect('/')
+      console.log('student does not exist')
+    } else {
+      res.redirect(`/students/${student.id}`)
+    }
+  }
 })
 
 function saveCover(student, coverEncoded) {

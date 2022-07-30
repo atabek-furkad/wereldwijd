@@ -40,7 +40,9 @@ router.post('/', async (req, res) => {
     country: req.body.country,
   })
 
-  saveCover(student, req.body.cover)
+  if (req.body.cover != '') {
+    saveCover(student, req.body.cover)
+  }
 
   try {
     const newStudent = await student.save()

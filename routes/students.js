@@ -54,8 +54,18 @@ router.post('/', async (req, res) => {
 })
 
 // display student by ID
-router.get('/:id', (req, res) => {
-  res.send('Show student ' + req.params.id)
+router.get('/:id', async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id)
+    res.render('students/profile', {
+      student2: student,
+    })
+  } catch (error) {
+    // res.redirect('/students')
+  }
+  // console.log(req.params.id)
+
+  // res.send('Show student ' + req.params.id)
 })
 
 // edit student by ID

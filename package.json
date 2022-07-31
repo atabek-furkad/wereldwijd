@@ -1,7 +1,7 @@
 {
   "name": "wereldwijd",
   "version": "1.0.0",
-  "description": "",
+  "description": "an application that helps the administration of Wereld Wijd to manage classes, teachers, students",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atabek-bakhramov/wereldwijd.git"
+    "url": "https://github.com/atabek-furkad/wereldwijd"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/atabek-bakhramov/wereldwijd/issues"
+    "url": "https://github.com/atabek-furkad/wereldwijd/issues"
   },
-  "homepage": "https://github.com/atabek-bakhramov/wereldwijd#readme",
+  "homepage": "https://github.com/atabek-furkad/wereldwijd#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "ejs": "^3.1.8",

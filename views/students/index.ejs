@@ -17,7 +17,13 @@
   <%= student.country %>
   <div>
     <% if (student.coverImagePath != null) { %>
-    <img height="200" width="150" src="<%= student.coverImagePath %>" alt="" />
+    <img
+      height="200"
+      width="150"
+      style="object-fit: cover"
+      src="<%= student.coverImagePath %>"
+      alt=""
+    />
     <% } %>
   </div>
 

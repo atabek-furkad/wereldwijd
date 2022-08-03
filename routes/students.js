@@ -1,9 +1,18 @@
 const express = require('express')
+const path = require('path')
+const fs = require('fs')
 const router = express.Router()
-
 const Student = require('../models/student')
+const multer = require('multer')
+const uploadPath = path.join('public', Student.attachedFileBasePath)
+const fileMimeTypes = ['application/pdf']
 
-const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg']
+const upload = multer({
+  dest: uploadPath,
+  fileFilter: (req, file, callback) => {
+    callback(null, fileMimeTypes.includes(file.mimetype))
+  },
+})
 
 // all students route
 router.get('/', async (req, res) => {
@@ -32,12 +41,16 @@ router.get('/new', (req, res) => {
 })
 
 // create student route
-router.post('/', async (req, res) => {
+router.post('/', upload.single('attachedFile'), async (req, res) => {
+  const fileName = req.file != null ? req.file.filename : null
+
+  console.log('fileName', fileName)
   const student = new Student({
     name: req.body.name,
     birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
+    attachedFileName: fileName,
   })
 
   if (req.body.cover != '') {
@@ -48,6 +61,10 @@ router.post('/', async (req, res) => {
     const newStudent = await student.save()
     res.redirect(`students/${student.id}`)
   } catch (error) {
+    if (student.attachedFileName != null) {
+      console.log('student.attachedFileName', student.attachedFileName)
+      removeAttachedFile(student.attachedFileName)
+    }
     res.render('students/new', {
       student: student,
       errorMessage: 'Error creating Student',
@@ -134,6 +151,13 @@ function saveCover(student, coverEncoded) {
     student.coverImage = new Buffer.from(cover.data, 'base64')
     student.coverImageType = cover.type
   }
+}
+
+function removeAttachedFile(fileName) {
+  console.log(path.join(uploadPath, fileName))
+  fs.unlink(path.join(uploadPath, fileName), (error) => {
+    if (error) console.error('upload error', error)
+  })
 }
 
 module.exports = router

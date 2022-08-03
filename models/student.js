@@ -32,14 +32,19 @@ const studentSchema = new mongoose.Schema({
   coverImageType: {
     type: String,
   },
-  attachedFileName: {
-    type: String,
-  },
+  attachedFileName: [
+    {
+      type: String,
+    },
+  ],
 })
 
 studentSchema.virtual('attachedFilePath').get(function () {
-  if (this.attachedFileName != null) {
-    return path.join('/', attachedFileBasePath, this.attachedFileName)
+  if (this.attachedFileName.length != 0) {
+    return this.attachedFileName.map((element) => {
+      console.log(element)
+      return path.join('/', attachedFileBasePath, element)
+    })
   }
 })
 

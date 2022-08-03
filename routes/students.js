@@ -12,6 +12,7 @@ const upload = multer({
   fileFilter: (req, file, callback) => {
     callback(null, fileMimeTypes.includes(file.mimetype))
   },
+  limits: { fieldSize: 25 * 1024 * 1024 },
 })
 
 const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg']
@@ -43,16 +44,18 @@ router.get('/new', (req, res) => {
 })
 
 // create student route
-router.post('/', upload.single('attachedFile'), async (req, res) => {
-  const fileName = req.file != null ? req.file.filename : null
+router.post('/', upload.array('attachedFile'), async (req, res) => {
+  let filesNames = null
+  if (req.files.length != 0) {
+    filesNames = req.files.map((file) => file.filename)
+  }
 
-  console.log('fileName', fileName)
   const student = new Student({
     name: req.body.name,
     birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
-    attachedFileName: fileName,
+    attachedFileName: filesNames,
   })
 
   if (req.body.cover != '') {

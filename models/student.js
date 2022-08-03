@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const path = require('path')
+
 const attachedFileBasePath = 'uploads/attachedFiles'
 
 const studentSchema = new mongoose.Schema({
@@ -33,6 +35,12 @@ const studentSchema = new mongoose.Schema({
   attachedFileName: {
     type: String,
   },
+})
+
+studentSchema.virtual('attachedFilePath').get(function () {
+  if (this.attachedFileName != null) {
+    return path.join('/', attachedFileBasePath, this.attachedFileName)
+  }
 })
 
 studentSchema.virtual('coverImagePath').get(function () {

@@ -14,6 +14,8 @@ const upload = multer({
   },
 })
 
+const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg']
+
 // all students route
 router.get('/', async (req, res) => {
   let searchOptions = {}

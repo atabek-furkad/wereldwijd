@@ -82,7 +82,7 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
   }
 })
 
-// display student by ID
+// display student by id
 router.get('/:id', async (req, res) => {
   try {
     const student = await Student.findById(req.params.id)
@@ -94,7 +94,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// edit student by ID
+// edit student by id
 router.get('/:id/edit', async (req, res) => {
   try {
     const student = await Student.findById(req.params.id)
@@ -106,7 +106,7 @@ router.get('/:id/edit', async (req, res) => {
   }
 })
 
-// update student by ID
+// update student by id
 router.put('/:id', async (req, res) => {
   let student
   try {
@@ -135,7 +135,7 @@ router.put('/:id', async (req, res) => {
   // res.send('Update student ' + req.params.id)
 })
 
-// delete student by ID
+// delete student by id
 router.delete('/:id', async (req, res) => {
   let student
   try {
@@ -152,6 +152,7 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+// delete attachment by id
 router.delete('/delete-attachment/:id', async (req, res) => {
   const profileID = `${req.params.id.split('__')[0]}`
   const attachmentID = `${req.params.id.split('__')[1]}`
@@ -162,6 +163,8 @@ router.delete('/delete-attachment/:id', async (req, res) => {
       ({ _id: profileID },
       { $pull: { attachedFileName: { fileName: attachmentID } } }),
     )
+
+    removeAttachedFile(attachmentID)
 
     // student.attachedFileName.pull({ fileName: attachmentID })
 

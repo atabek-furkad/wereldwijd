@@ -107,7 +107,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 // update student by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', upload.array('attachedFile'), async (req, res) => {
   let student
   try {
     student = await Student.findById(req.params.id)
@@ -119,6 +119,23 @@ router.put('/:id', async (req, res) => {
     if (req.body.cover != '') {
       saveCover(student, req.body.cover)
     }
+
+    console.log('req', req)
+    console.log('req.file', req.file)
+    console.log('req.files', req.files)
+    // adding the attached files to the student
+    if (req.files.length != 0) {
+      console.log('Am I running?')
+      await req.files.forEach((file) => {
+        const fileObject = {
+          fileName: file.filename,
+          originalName: file.originalname,
+        }
+        student.attachedFileName.push(fileObject)
+      })
+    }
+    // --- end of attached files addition ---
+
     await student.save()
     res.redirect(`/students/${student.id}`)
   } catch (error) {
@@ -163,25 +180,12 @@ router.delete('/delete-attachment/:id', async (req, res) => {
       ({ _id: profileID },
       { $pull: { attachedFileName: { fileName: attachmentID } } }),
     )
-
     removeAttachedFile(attachmentID)
-
-    // student.attachedFileName.pull({ fileName: attachmentID })
-
-    // console.log('student', student)
-    // const attachmentIndex = await student.attachedFileName.findIndex(
-    //   (object) => {
-    //     return object.fileName
-    //   },
-    // )
-    // console.log('attachmentIndex', attachmentIndex)
-    // student.attachedFileName.splice(attachmentIndex, 1)
-  } catch (error) {}
-
-  console.log('profileID', profileID)
-  console.log('attachmentID', attachmentID)
-
-  res.redirect(`/students/${profileID}`)
+    res.redirect(`/students/${profileID}`)
+  } catch (error) {
+    console.error(error)
+    res.redirect(`/students}`)
+  }
 })
 
 function saveCover(student, coverEncoded) {

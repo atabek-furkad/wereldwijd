@@ -152,6 +152,15 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+router.delete('/delete-attachment/:id', async (req, res) => {
+  console.log('hi')
+  console.log('req.params.id', req.params.id)
+
+  console.log('check', `${req.params.id.split('_')[0]}`)
+
+  res.redirect(`/students/${req.params.id.split('_')[0]}`)
+})
+
 function saveCover(student, coverEncoded) {
   if (coverEncoded == null) return
   const cover = JSON.parse(coverEncoded)

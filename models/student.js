@@ -38,7 +38,7 @@ const studentSchema = new mongoose.Schema({
 studentSchema.virtual('attachedFilePath').get(function () {
   if (this.attachedFileName.length != 0) {
     return this.attachedFileName.map((element) => {
-      console.log(element)
+      // console.log(element)
       return {
         source: path.join('/', attachedFileBasePath, element.fileName),
         name: element.originalName,

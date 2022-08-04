@@ -8,7 +8,7 @@ student.attachedFilePath.forEach(file => { %>
 <a href="<%= file.source %> ">Download</a>
 
 <form
-  action="/students/delete-attachment/<%= student.id %>_<%= file.source.split("/")[3] %>?_method=DELETE"
+  action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
   method="POST"
 >
   <button type="submit">Delete</button>

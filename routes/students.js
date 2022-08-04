@@ -153,12 +153,32 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.delete('/delete-attachment/:id', async (req, res) => {
-  console.log('hi')
-  console.log('req.params.id', req.params.id)
+  const profileID = `${req.params.id.split('__')[0]}`
+  const attachmentID = `${req.params.id.split('__')[1]}`
 
-  console.log('check', `${req.params.id.split('_')[0]}`)
+  let student
+  try {
+    student = await Student.update(
+      ({ _id: profileID },
+      { $pull: { attachedFileName: { fileName: attachmentID } } }),
+    )
 
-  res.redirect(`/students/${req.params.id.split('_')[0]}`)
+    // student.attachedFileName.pull({ fileName: attachmentID })
+
+    // console.log('student', student)
+    // const attachmentIndex = await student.attachedFileName.findIndex(
+    //   (object) => {
+    //     return object.fileName
+    //   },
+    // )
+    // console.log('attachmentIndex', attachmentIndex)
+    // student.attachedFileName.splice(attachmentIndex, 1)
+  } catch (error) {}
+
+  console.log('profileID', profileID)
+  console.log('attachmentID', attachmentID)
+
+  res.redirect(`/students/${profileID}`)
 })
 
 function saveCover(student, coverEncoded) {

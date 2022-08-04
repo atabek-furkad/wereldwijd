@@ -1,5 +1,9 @@
 <h2>profile page</h2>
 
-<%= student.name %> <% student.attachedFilePath.forEach(filePath => { %>
-<a href="<%= filePath %> ">Download</a>
+<%= student.name %> <% student.attachedFilePath.forEach(file => { %>
+<h3><%= file.name %></h3>
+<br />
+<a href="<%= file.source %> ">Download</a>
+<br />
+<br />
 <% }) %>

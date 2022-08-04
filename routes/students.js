@@ -40,22 +40,15 @@ router.get('/', async (req, res) => {
 // new student route
 router.get('/new', (req, res) => {
   res.render('students/new', { student: new Student() })
-  // console.log('new Student', new Student())
 })
 
 // create student route
 router.post('/', upload.array('attachedFile'), async (req, res) => {
-  let filesNames = null
-  if (req.files.length != 0) {
-    filesNames = req.files.map((file) => file.filename)
-  }
-
   const student = new Student({
     name: req.body.name,
     birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
-    attachedFileName: filesNames,
   })
 
   if (req.body.cover != '') {
@@ -63,11 +56,23 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
   }
 
   try {
+    // adding the attached files to the student
+    if (req.files.length != 0) {
+      await req.files.forEach((file) => {
+        const fileObject = {
+          fileName: file.filename,
+          originalName: file.originalname,
+        }
+        student.attachedFileName.push(fileObject)
+      })
+    }
+    // --- end of attached files addition ---
+
     const newStudent = await student.save()
+
     res.redirect(`students/${student.id}`)
   } catch (error) {
     if (student.attachedFileName != null) {
-      console.log('student.attachedFileName', student.attachedFileName)
       removeAttachedFile(student.attachedFileName)
     }
     res.render('students/new', {
@@ -103,7 +108,6 @@ router.get('/:id/edit', async (req, res) => {
 
 // update student by ID
 router.put('/:id', async (req, res) => {
-  console.log('put is triggered', req.params.id)
   let student
   try {
     student = await Student.findById(req.params.id)
@@ -111,8 +115,7 @@ router.put('/:id', async (req, res) => {
     student.birthDate = new Date(req.body.birthDate)
     student.preferredLanguage = req.body.preferredLanguage
     student.country = req.body.country
-    console.log('student', student.name)
-    console.log(req.body.cover)
+
     if (req.body.cover != '') {
       saveCover(student, req.body.cover)
     }
@@ -159,7 +162,6 @@ function saveCover(student, coverEncoded) {
 }
 
 function removeAttachedFile(fileName) {
-  console.log(path.join(uploadPath, fileName))
   fs.unlink(path.join(uploadPath, fileName), (error) => {
     if (error) console.error('upload error', error)
   })

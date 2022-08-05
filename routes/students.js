@@ -51,28 +51,23 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
     country: req.body.country,
   })
 
+  // check if there is an image to save
   if (req.body.cover != '') {
     saveCover(student, req.body.cover)
   }
 
-  try {
-    // adding the attached files to the student
-    if (req.files.length != 0) {
-      await req.files.forEach((file) => {
-        const fileObject = {
-          fileName: file.filename,
-          originalName: file.originalname,
-        }
-        student.attachedFileName.push(fileObject)
-      })
-    }
-    // --- end of attached files addition ---
+  // check if there is a file to save
+  if (req.files.length != 0) {
+    attachFiles(student, req.files)
+  }
 
+  try {
     const newStudent = await student.save()
 
     res.redirect(`students/${student.id}`)
   } catch (error) {
-    if (student.attachedFileName != null) {
+    if (student.attachedFileName.length != 0) {
+      console.log('student.attachedFileName', student.attachedFileName)
       removeAttachedFile(student.attachedFileName)
     }
     res.render('students/new', {
@@ -120,19 +115,9 @@ router.put('/:id', upload.array('attachedFile'), async (req, res) => {
       saveCover(student, req.body.cover)
     }
 
-    console.log('req', req)
-    console.log('req.file', req.file)
-    console.log('req.files', req.files)
     // adding the attached files to the student
     if (req.files.length != 0) {
-      console.log('Am I running?')
-      await req.files.forEach((file) => {
-        const fileObject = {
-          fileName: file.filename,
-          originalName: file.originalname,
-        }
-        student.attachedFileName.push(fileObject)
-      })
+      attachFiles(student, req.files)
     }
     // --- end of attached files addition ---
 
@@ -188,6 +173,16 @@ router.delete('/delete-attachment/:id', async (req, res) => {
   }
 })
 
+function attachFiles(student, files) {
+  files.forEach((file) => {
+    const fileObject = {
+      fileName: file.filename,
+      originalName: file.originalname,
+    }
+    student.attachedFileName.push(fileObject)
+  })
+}
+
 function saveCover(student, coverEncoded) {
   if (coverEncoded == null) return
   const cover = JSON.parse(coverEncoded)
@@ -197,10 +192,19 @@ function saveCover(student, coverEncoded) {
   }
 }
 
-function removeAttachedFile(fileName) {
-  fs.unlink(path.join(uploadPath, fileName), (error) => {
-    if (error) console.error('upload error', error)
-  })
+function removeAttachedFile(attachment) {
+  console.log('attachment', attachment)
+  if (Array.isArray(attachment)) {
+    attachment.forEach((file) => {
+      fs.unlink(path.join(uploadPath, file.fileName), (error) => {
+        if (error) console.error('upload error', error)
+      })
+    })
+  } else {
+    fs.unlink(path.join(uploadPath, attachment), (error) => {
+      if (error) console.error('upload error', error)
+    })
+  }
 }
 
 module.exports = router

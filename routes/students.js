@@ -66,9 +66,9 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
 
     res.redirect(`students/${student.id}`)
   } catch (error) {
-    if (student.attachedFileName.length != 0) {
-      console.log('student.attachedFileName', student.attachedFileName)
-      removeAttachedFile(student.attachedFileName)
+    if (student.attachment.length != 0) {
+      console.log('student.attachment', student.attachment)
+      removeAttachedFile(student.attachment)
     }
     res.render('students/new', {
       student: student,
@@ -163,7 +163,7 @@ router.delete('/delete-attachment/:id', async (req, res) => {
   try {
     student = await Student.update(
       ({ _id: profileID },
-      { $pull: { attachedFileName: { fileName: attachmentID } } }),
+      { $pull: { attachment: { fileName: attachmentID } } }),
     )
     removeAttachedFile(attachmentID)
     res.redirect(`/students/${profileID}`)
@@ -179,7 +179,7 @@ function attachFiles(student, files) {
       fileName: file.filename,
       originalName: file.originalname,
     }
-    student.attachedFileName.push(fileObject)
+    student.attachment.push(fileObject)
   })
 }
 

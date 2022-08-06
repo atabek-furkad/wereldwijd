@@ -33,6 +33,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
   },
   attachment: [],
+  dutchClass: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'DutchClass',
+  },
 })
 
 studentSchema.virtual('attachedFilePath').get(function () {

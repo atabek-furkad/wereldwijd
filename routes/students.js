@@ -3,6 +3,7 @@ const path = require('path')
 const fs = require('fs')
 const router = express.Router()
 const Student = require('../models/student')
+const DutchClass = require('../models/dutchClass')
 const multer = require('multer')
 const uploadPath = path.join('public', Student.attachedFileBasePath)
 const fileMimeTypes = ['application/pdf']
@@ -38,8 +39,15 @@ router.get('/', async (req, res) => {
 })
 
 // new student route
-router.get('/new', (req, res) => {
-  res.render('students/new', { student: new Student() })
+router.get('/new', async (req, res) => {
+  try {
+    const dutchClasses = await DutchClass.find({})
+    console.log('new', dutchClasses)
+    res.render('students/new', {
+      student: new Student(),
+      dutchClasses: dutchClasses,
+    })
+  } catch (error) {}
 })
 
 // create student route
@@ -49,6 +57,7 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
     birthDate: new Date(req.body.birthDate),
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
+    dutchClass: req.body.dutchClass,
   })
 
   // check if there is an image to save
@@ -105,6 +114,7 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id', upload.array('attachedFile'), async (req, res) => {
   let student
   try {
+    console.log('req.params', req.params)
     student = await Student.findById(req.params.id)
     student.name = req.body.name
     student.birthDate = new Date(req.body.birthDate)

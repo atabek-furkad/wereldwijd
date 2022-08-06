@@ -1,5 +1,16 @@
 <label>Name</label> <input type="text" name="name" value="<%=student.name %>" />
 <br>
+<label>Dutch Class</label>
+<select name="dutchClass">
+<% dutchClasses.forEach(dutchClass => { %>
+  <% if (dutchClass.id == student.dutchClass) { %>
+    <option selected label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+  <% } else { %>
+    <option label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+  <% } %>
+<% }) %> 
+</select>
+<br>
 <label>Date of Birth</label>
 <input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
 <br>

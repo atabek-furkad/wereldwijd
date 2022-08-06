@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const DutchClass = require('../models/dutchClass')
+const Student = require('../models/student')
 
 // all classes route
 router.get('/', async (req, res) => {
@@ -26,6 +27,16 @@ router.post('/', async (req, res) => {
     await newDutchClass.save()
 
     res.redirect(`dutch-classes/`)
+  } catch (error) {}
+})
+
+// view class list
+router.get('/:id', async (req, res) => {
+  try {
+    const students = await Student.find({ dutchClass: req.params.id })
+    res.render('dutchClasses/classList', {
+      students: students,
+    })
   } catch (error) {}
 })
 

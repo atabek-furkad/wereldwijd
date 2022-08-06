@@ -52,6 +52,8 @@ router.get('/new', async (req, res) => {
 
 // create student route
 router.post('/', upload.array('attachedFile'), async (req, res) => {
+  const dutchClasses = await DutchClass.find({})
+
   const student = new Student({
     name: req.body.name,
     birthDate: new Date(req.body.birthDate),
@@ -75,12 +77,18 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
 
     res.redirect(`students/${student.id}`)
   } catch (error) {
+    let errorMessage = 'Error creating Student'
+    if (student.dutchClass == null) {
+      errorMessage = 'dutch class is not selected'
+    }
+
     if (student.attachment.length != 0) {
       removeAttachedFile(student.attachment)
     }
     res.render('students/new', {
       student: student,
-      errorMessage: 'Error creating Student',
+      dutchClasses: dutchClasses,
+      errorMessage: errorMessage,
     })
   }
 })

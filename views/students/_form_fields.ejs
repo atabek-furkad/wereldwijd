@@ -2,13 +2,14 @@
 <br>
 <label>Dutch Class</label>
 <select name="dutchClass">
-<% dutchClasses.forEach(dutchClass => { %>
-  <% if (dutchClass.id == student.dutchClass) { %>
-    <option selected label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
-  <% } else { %>
-    <option label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
-  <% } %>
-<% }) %> 
+  <option disabled selected value="null"> - select class - </option>
+  <% dutchClasses.forEach(dutchClass => { %>
+    <% if (dutchClass.id == student.dutchClass) { %>
+      <option selected label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+    <% } else { %>
+      <option label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+    <% } %>
+  <% }) %> 
 </select>
 <br>
 <label>Date of Birth</label>

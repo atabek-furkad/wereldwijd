@@ -13,8 +13,8 @@
 
 <% students.forEach(student => { %>
 <div>
-  <%= student.name%> <%= student.birthDate %> <%= student.preferredLanguage %>
-  <%= student.country %>
+  <%= student.name%> <%= student.dutchClass.name %> <%=
+  student.preferredLanguage %> <%= student.country %>
   <div>
     <% if (student.coverImagePath != null) { %>
     <img

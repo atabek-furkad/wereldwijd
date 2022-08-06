@@ -28,7 +28,8 @@ router.get('/', async (req, res) => {
     searchOptions.country = new RegExp(req.query.country, 'i')
   }
   try {
-    const students = await Student.find(searchOptions)
+    const students = await Student.find(searchOptions).populate('dutchClass')
+
     res.render('students/index', {
       students: students,
       searchOptions: req.query,
@@ -42,7 +43,6 @@ router.get('/', async (req, res) => {
 router.get('/new', async (req, res) => {
   try {
     const dutchClasses = await DutchClass.find({})
-    console.log('new', dutchClasses)
     res.render('students/new', {
       student: new Student(),
       dutchClasses: dutchClasses,
@@ -76,7 +76,6 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
     res.redirect(`students/${student.id}`)
   } catch (error) {
     if (student.attachment.length != 0) {
-      console.log('student.attachment', student.attachment)
       removeAttachedFile(student.attachment)
     }
     res.render('students/new', {
@@ -101,9 +100,11 @@ router.get('/:id', async (req, res) => {
 // edit student by id
 router.get('/:id/edit', async (req, res) => {
   try {
+    const dutchClasses = await DutchClass.find({})
     const student = await Student.findById(req.params.id)
     res.render('students/edit', {
       student: student,
+      dutchClasses: dutchClasses,
     })
   } catch (error) {
     res.redirect('/students')
@@ -114,12 +115,12 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id', upload.array('attachedFile'), async (req, res) => {
   let student
   try {
-    console.log('req.params', req.params)
     student = await Student.findById(req.params.id)
     student.name = req.body.name
     student.birthDate = new Date(req.body.birthDate)
     student.preferredLanguage = req.body.preferredLanguage
     student.country = req.body.country
+    student.dutchClass = req.body.dutchClass
 
     if (req.body.cover != '') {
       saveCover(student, req.body.cover)
@@ -203,7 +204,6 @@ function saveCover(student, coverEncoded) {
 }
 
 function removeAttachedFile(attachment) {
-  console.log('attachment', attachment)
   if (Array.isArray(attachment)) {
     attachment.forEach((file) => {
       fs.unlink(path.join(uploadPath, file.fileName), (error) => {

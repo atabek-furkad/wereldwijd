@@ -1,0 +1,31 @@
+.navbar-container {
+  width: 250px;
+  /* border: 5px solid red; */
+  background-color: var(--color-background-dark);
+  color: var(--color-light);
+}
+
+header {
+  position: fixed;
+  /* height: 100%; */
+  border: 1px solid yellow;
+  /* margin: 0 auto; */
+  /* width: min-content; */
+}
+
+header ul {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* height: min-content; */
+  /* justify-content: space-between; */
+  /* border: 1px solid green; */
+  /* width: 100%; */
+}
+
+header ul li {
+  padding: 15px 20px;
+}
+
+.main {
+  height: 2000px;
+}

@@ -27,6 +27,11 @@
     ></script>
     <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script defer src="/javascripts/fileUpload.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <link href="/stylesheets/main.css" rel="stylesheet" />
     <title>Wereld Wijd</title>
   </head>
@@ -35,7 +40,7 @@
       <div class="navbar-container">
         <%- include('../partials/header.ejs') %>
       </div>
-      <div class="main">
+      <div class="inner-container">
         <%- include('../partials/errorMessage.ejs') %> <%- body %>
       </div>
     </div>

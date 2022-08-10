@@ -1,39 +1,50 @@
-<h2>Search Students</h2>
-<form action="/students" method="GET">
-  <div>
-    <label>Name</label>
-    <input type="text" name="name" value="<%= searchOptions.name %>" />
+<div class="students-container">
+  <h2>Students</h2>
+  <div class="students-navigation">
+    <a class="link-button" href="/students/new">New Student</a>
+    <form action="/students" class="search" method="GET">
+      <input
+        type="text"
+        name="name"
+        value="<%= searchOptions.name %>"
+        placeholder="Search by name..."
+      />
+      <button type="submit"><i class="fa fa-search"></i></button>
+
+      <!-- <div>
+        <label>Country</label>
+        <input
+          type="text"
+          name="country"
+          value="<%= searchOptions.country %>"
+        />
+      </div> -->
+    </form>
   </div>
+  <% students.forEach(student => { %>
   <div>
-    <label>Country</label>
-    <input type="text" name="country" value="<%= searchOptions.country %>" />
+    <%= student.name%> <%= student.dutchClass.name %> <%=
+    student.preferredLanguage %> <%= student.country %>
+    <div>
+      <% if (student.coverImagePath != null) { %>
+      <img
+        height="200"
+        width="150"
+        style="object-fit: cover"
+        src="<%= student.coverImagePath %>"
+        alt=""
+      />
+      <% } %>
+    </div>
+
+    <a href="/students/<%= student.id %>">View</a>
+
+    <a href="/students/<%= student.id %>/edit">Edit</a>
+
+    <%- include("../partials/deleteForm.ejs", { url: `/students/${student.id}`
+    }) %>
   </div>
-  <button type="submit">Search</button>
-</form>
-
-<% students.forEach(student => { %>
-<div>
-  <%= student.name%> <%= student.dutchClass.name %> <%=
-  student.preferredLanguage %> <%= student.country %>
-  <div>
-    <% if (student.coverImagePath != null) { %>
-    <img
-      height="200"
-      width="150"
-      style="object-fit: cover"
-      src="<%= student.coverImagePath %>"
-      alt=""
-    />
-    <% } %>
-  </div>
-
-  <a href="/students/<%= student.id %>">View</a>
-
-  <a href="/students/<%= student.id %>/edit">Edit</a>
-
-  <%- include("../partials/deleteForm.ejs", { url: `/students/${student.id}` })
-  %>
+  <br />
+  <br />
+  <% }) %>
 </div>
-<br />
-<br />
-<% }) %>

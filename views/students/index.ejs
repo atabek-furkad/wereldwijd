@@ -9,7 +9,9 @@
         value="<%= searchOptions.name %>"
         placeholder="Search by name..."
       />
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <button type="submit">
+        <i class="fa fa-search search-black-icon"></i>
+      </button>
 
       <!-- <div>
         <label>Country</label>
@@ -21,7 +23,27 @@
       </div> -->
     </form>
   </div>
-  <% students.forEach(student => { %>
+
+  <table id="tblData">
+    <tr>
+      <th>Name</th>
+      <th>Preferred Language</th>
+      <th>Country of Origin</th>
+      <th>Dutch Class Level</th>
+    </tr>
+    <% students.forEach(student => { %>
+    <tr>
+      <td><%= student.name%></td>
+      <td><%= student.preferredLanguage %></td>
+      <td><%= student.country %></td>
+      <td><%= student.dutchClass.name %></td>
+    </tr>
+
+    <% }) %>
+  </table>
+
+  <button id="export-excel-file">Export Data To Excel</button>
+  <!-- <% students.forEach(student => { %>
   <div>
     <%= student.name%> <%= student.dutchClass.name %> <%=
     student.preferredLanguage %> <%= student.country %>
@@ -43,8 +65,8 @@
 
     <%- include("../partials/deleteForm.ejs", { url: `/students/${student.id}`
     }) %>
-  </div>
+  </div> -->
   <br />
   <br />
-  <% }) %>
+  <!-- <% }) %> -->
 </div>

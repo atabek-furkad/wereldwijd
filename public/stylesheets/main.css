@@ -6,7 +6,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: var(--color-dark);
 }
 
 body {
@@ -22,9 +21,10 @@ body {
 }
 
 .inner-container {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: 100%;
   height: 2000px;
+  margin-top: 20px;
 }
 
 .link-button {
@@ -36,6 +36,7 @@ body {
 
 .link-button:hover {
   background: #0b7dda;
+  color: white;
 }
 
 ul li {

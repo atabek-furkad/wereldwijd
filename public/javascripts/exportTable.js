@@ -2,7 +2,10 @@
 // https://www.codexworld.com/export-html-table-data-to-excel-using-javascript/
 
 document.getElementById('export-excel-file').addEventListener('click', () => {
-  exportTableToExcel('tableData', `${Date.now()}_students`)
+  exportTableToExcel(
+    'tableData',
+    `${new Date().toJSON().slice(0, 10)}_students`,
+  )
 })
 
 function exportTableToExcel(tableID, filename = '') {

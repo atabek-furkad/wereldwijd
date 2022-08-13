@@ -8,45 +8,15 @@
 h2 {
   text-align: center;
   font-weight: 800;
+  text-transform: uppercase;
 }
 
 form.search {
   max-width: 300px;
-  /* width: 500px; */
-  /* border: 10px solid blue; */
-}
-
-form.search input[type='text'] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-form.search button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  /* background: black;
-  color: var(--color-dark); */
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
 }
 
 .search-black-icon {
-  color: black;
-}
-
-form.search button:hover {
-  background: #0b7dda;
-}
-
-form.search button:hover .search-black-icon {
-  color: white;
+  color: var(--color-wheat);
 }
 
 form.search::after {
@@ -57,26 +27,33 @@ form.search::after {
 form.search input[type='text'] {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid var(--color-background-dark);
+  border: 1px solid var(--color-orange);
   float: left;
   width: 80%;
-  background: #f1f1f1;
+  background: var(--color-rose);
+  border-radius: 15px 0 0 15px;
+  /* text-transform: uppercase; */
+}
+
+::placeholder {
+  color: var(--color-xiketic);
 }
 
 form.search button {
   float: left;
   width: 20%;
   padding: 10px;
-  background-color: var(--color-background-light);
+  background-color: var(--color-orange);
   color: white;
   font-size: 16px;
-  border: 1px solid var(--color-background-dark);
+  border: 1px solid var(--color-orange);
   border-left: none;
   cursor: pointer;
+  border-radius: 0 15px 15px 0;
 }
 
 form.search button:hover {
-  background: #0b7dda;
+  /* background: #0b7dda; */
 }
 
 form.search::after {
@@ -93,29 +70,42 @@ form.search::after {
 
 /* Table styles */
 
+.table-container {
+  /* padding: 10px 20px; */
+  /* background-color: var(--color-xiketic); */
+  /* border-radius: 10px;s */
+  color: var(--color-xiketic);
+}
+
 #tableData {
   border-collapse: collapse;
   width: 100%;
 }
 
-#tableData td,
 #tableData th {
-  border: 1px solid var(--color-background-light);
-  padding: 8px;
+  padding: 15px 0;
+  /* text-align: center; */
+  /* color: var(--color-wheat); */
 }
 
-#tableData tr:nth-child(even) {
-  background-color: #acacac;
+#tableData th td {
+  background-color: transparent;
 }
 
-#tableData tr:hover {
-  background-color: rgb(112, 125, 209);
+#tableData td {
+  padding: 5px 10px;
+  /* background-color: #0b7dda;
+  border: 1px solid black; */
 }
 
-#tableData th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: var(--color-background-dark);
-  color: white;
+/* #tableData tbody tr:nth-child(even) {
+  background-color: var(--color-rose);
+}
+
+#tableData tbody tr:nth-child(odd) {
+  background-color: var(--color-wheat);
+} */
+
+#tableData tbody tr:hover {
+  background-color: var(--color-manatee);
 }

@@ -1,7 +1,7 @@
 <div class="students-container">
   <h2>Students</h2>
   <div class="students-navigation">
-    <a class="link-button" href="/students/new">New Student</a>
+    <a class="link-button" href="/students/new">Student +</a>
     <form action="/students" class="search" method="GET">
       <input
         type="text"
@@ -24,34 +24,41 @@
     </form>
   </div>
 
-  <table id="tableData">
-    <tr>
-      <th>Name</th>
-      <th>Preferred Language</th>
-      <th>Country of Origin</th>
-      <th>Dutch Class Level</th>
-      <th>View</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-    <% students.forEach(student => { %>
-    <tr>
-      <td><%= student.name%></td>
-      <td><%= student.preferredLanguage %></td>
-      <td><%= student.country %></td>
-      <td><%= student.dutchClass.name %></td>
-      <td><a href="/students/<%= student.id %>">View</a></td>
-      <td><a href="/students/<%= student.id %>/edit">Edit</a></td>
-      <td>
-        <%- include("../partials/deleteForm.ejs", { url:
-        `/students/${student.id}` }) %>
-      </td>
-    </tr>
+  <div class="table-container">
+    <table id="tableData">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Country</th>
+          <th>Dutch Class</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.name%></td>
+          <td><%= student.preferredLanguage %></td>
+          <td><%= student.country %></td>
+          <td><%= student.dutchClass.name %></td>
+          <td><a href="/students/<%= student.id %>">View</a></td>
+          <td><a href="/students/<%= student.id %>/edit">Edit</a></td>
+          <td>
+            <%- include("../partials/deleteForm.ejs", { url:
+            `/students/${student.id}` }) %>
+          </td>
+        </tr>
 
-    <% }) %>
-  </table>
-
-  <button id="export-excel-file">Export Data To Excel</button>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <a class="link-button" style="width: 100px" id="export-excel-file">
+    Export
+  </a>
   <!-- <% students.forEach(student => { %>
   <div>
     <%= student.name%> <%= student.dutchClass.name %> <%=

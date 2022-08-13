@@ -1,7 +1,27 @@
 .navbar-container {
   width: 250px;
+  background-color: var(--color-xiketic);
+  /* color: var(--color-wheat); */
+}
+
+.navbar-container li {
+  color: var(--color-wheat);
   /* border: 5px solid red; */
-  background-color: var(--color-background-dark);
+  padding: 10px 20px;
+  border-radius: 15px 0 0 15px;
+  margin: 0 0 0 10px;
+}
+
+.navbar-container li:nth-child(2) {
+  background-color: var(--color-wheat);
+}
+
+.navbar-container li:nth-child(2) a {
+  color: var(--color-xiketic);
+}
+
+.navbar-container a {
+  color: var(--color-wheat);
 }
 
 header {

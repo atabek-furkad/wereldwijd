@@ -7,6 +7,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  letter-spacing: 1.1px;
 }
 
 :root {
@@ -16,9 +17,17 @@
 body {
   max-width: 1200px;
   margin: auto;
-  background-color: aliceblue;
+  background-color: var(--color-powder);
 
   /* background-color: var(--color-background-dark); */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: 1.4px;
+  color: var(--color-xiketic);
 }
 
 .container {
@@ -36,21 +45,27 @@ body {
 .link-button {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid var(--color-background-dark);
-  background-color: var(--color-dark);
+  /* border: 1px solid var(--color-xiketic); */
+  background-color: var(--color-orange);
+  border-radius: 15px;
+  color: var(--color-wheat);
+  cursor: pointer;
+  text-align: center;
+  text-transform: unset;
+  /* box-shadow: 0 0 5px 5px var(--color-wheat); */
 }
 
 .link-button:hover {
-  background: #0b7dda;
-  color: white;
+  /* background: #0b7dda;
+  color: white; */
 }
 
 ul li {
   list-style-type: none;
+  /* text-align: right; */
 }
 
 a {
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--color-light);
 }

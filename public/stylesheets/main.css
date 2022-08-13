@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './header.css';
 @import './students.css';
+@import './fonts.css';
 
 * {
   padding: 0;
@@ -8,10 +9,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  font-family: Montserrat;
+}
+
 body {
   max-width: 1200px;
   margin: auto;
   background-color: aliceblue;
+
   /* background-color: var(--color-background-dark); */
 }
 

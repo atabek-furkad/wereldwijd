@@ -47,7 +47,7 @@ h4 {
   font-size: 16px;
   /* border: 1px solid var(--color-xiketic); */
   background-color: var(--color-orange);
-  border-radius: 15px;
+  border-radius: 5px;
   color: var(--color-wheat);
   cursor: pointer;
   text-align: center;
@@ -68,4 +68,11 @@ ul li {
 a {
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.delete-button {
+  /* padding: 0; */
+  border: none;
+  background: none;
+  cursor: pointer;
 }

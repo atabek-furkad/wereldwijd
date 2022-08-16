@@ -33,6 +33,12 @@ form.search input[type='text'] {
   background: var(--color-rose);
   border-radius: 5px 0 0 5px;
   /* text-transform: uppercase; */
+  /* box-shadow: 0 0 5px 5px var(--color-wheat); */
+  outline: none;
+}
+
+form.search input[type='text']:focus {
+  background: var(--color-wheat);
 }
 
 ::placeholder {
@@ -40,6 +46,7 @@ form.search input[type='text'] {
 }
 
 form.search button {
+  /* box-shadow: 0 0 5px 5px var(--color-wheat); */
   float: left;
   width: 20%;
   padding: 10px;
@@ -97,6 +104,10 @@ form.search::after {
   text-align: center;
   /* background-color: #0b7dda;
   border: 1px solid black; */
+}
+
+#tableData tbody tr {
+  transition: 0.2s ease-in-out;
 }
 
 #tableData tbody tr:nth-child(even) {

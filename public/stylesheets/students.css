@@ -82,6 +82,8 @@ form.search::after {
   /* background-color: var(--color-xiketic); */
   /* border-radius: 10px;s */
   color: var(--color-xiketic);
+  height: 320px;
+  overflow: auto;
 }
 
 #tableData {
@@ -91,6 +93,9 @@ form.search::after {
 
 #tableData th {
   padding: 15px 0;
+  position: sticky;
+  top: 0;
+  background-color: aliceblue;
   /* text-align: left; */
   /* color: var(--color-wheat); */
 }

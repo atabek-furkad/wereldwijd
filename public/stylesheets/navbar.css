@@ -8,15 +8,20 @@
   color: var(--color-wheat);
   /* border: 5px solid red; */
   padding: 10px 20px;
-  border-radius: 15px 0 0 15px;
+  border-radius: 5px 0 0 5px;
   margin: 0 0 0 10px;
 }
 
-.navbar-container li:nth-child(2) {
+/* .selected-navbar-option {
+  background-color: var(--color-wheat);
+  color: var(--color-xiketic);
+} */
+
+.navbar-container li:hover {
   background-color: var(--color-wheat);
 }
 
-.navbar-container li:nth-child(2) a {
+.navbar-container li:hover a {
   color: var(--color-xiketic);
 }
 

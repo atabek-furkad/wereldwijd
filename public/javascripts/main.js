@@ -1,4 +1,5 @@
 import exportTableToExcel from './exportTable.js'
+// import highlightChosenSection from './navbar.js'
 
 document.getElementById('export-excel-file').addEventListener('click', () => {
   exportTableToExcel(
@@ -7,6 +8,15 @@ document.getElementById('export-excel-file').addEventListener('click', () => {
   )
 })
 
-const navButtons = document.querySelectorAll('.nav-buttons')
+// const navbarButtons = document.querySelectorAll('.navbar-button')
 
-console.log(navButtons)
+// navbarButtons.forEach((button) => {
+//   console.log(button)
+//   button.addEventListener('click', (e) => {
+//     // e.preventDefault()
+//     navbarButtons.forEach((target) => {
+//       target.classList.remove('selected-navbar-option')
+//     })
+//     button.classList.add('selected-navbar-option')
+//   })
+// })

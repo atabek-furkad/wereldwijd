@@ -5,20 +5,21 @@
 }
 
 .navbar-container li {
+  padding: 15px 20px;
   color: var(--color-wheat);
   /* border: 5px solid red; */
-  padding: 10px 20px;
   border-radius: 5px 0 0 5px;
   margin: 0 0 0 10px;
 }
 
 /* .selected-navbar-option {
   background-color: var(--color-wheat);
-  color: var(--color-xiketic);
+
 } */
 
 .navbar-container li:hover {
   background-color: var(--color-wheat);
+  color: var(--color-xiketic);
 }
 
 .navbar-container li:hover a {
@@ -45,10 +46,6 @@ header ul {
   /* justify-content: space-between; */
   /* border: 1px solid green; */
   /* width: 100%; */
-}
-
-header ul li {
-  padding: 15px 20px;
 }
 
 .main {

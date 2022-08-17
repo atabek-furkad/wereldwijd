@@ -2,8 +2,24 @@
 
 <form action="/teachers" method="POST">
   <label>Name</label>
-  <input type="text" name="name" />
+  <input type="text" name="name" value="<%= teacher.name%>" />
 
+  <select name="dutchClass">
+    <option disabled selected value="null">- select class -</option>
+    <% dutchClasses.forEach(dutchClass => { %> <% if (dutchClass.id ==
+    teacher.dutchClass) { %>
+    <option
+      selected
+      label="<%= dutchClass.name %>"
+      value="<%= dutchClass.id %>"
+    ></option>
+    <% } else { %>
+    <option
+      label="<%= dutchClass.name %>"
+      value="<%= dutchClass.id %>"
+    ></option>
+    <% } %> <% }) %>
+  </select>
   <a href="/teachers">Cancel</a>
   <button type="submit">Create</button>
 </form>

@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
     const dutchClass = await DutchClass.findById(req.params.id)
     const students = await Student.find({ dutchClass: req.params.id })
     const teachers = await Teacher.find({ dutchClass: req.params.id })
-    res.render('dutchClasses/classList', {
+    res.render('dutchClasses/profile', {
       dutchClass: dutchClass,
       students: students,
       teachers: teachers,

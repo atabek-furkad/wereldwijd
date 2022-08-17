@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Teacher = require('../models/teacher')
-// const DutchClass = require('../models/dutchClass')
+const DutchClass = require('../models/dutchClass')
 
 // all teachers route
 router.get('/', async (req, res) => {
@@ -16,9 +16,10 @@ router.get('/', async (req, res) => {
 // new teacher route
 router.get('/new', async (req, res) => {
   try {
-    // const dutchClasses = await DutchClass.find({})
+    const dutchClasses = await DutchClass.find({})
     res.render('teachers/new', {
       teacher: new Teacher(),
+      dutchClasses: dutchClasses,
     })
   } catch (error) {
     console.log(error)
@@ -26,10 +27,16 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+  // if (req.body.dutchClass == null) {
+  //   const dutchClass = null
+  // }
+
   const newTeacher = new Teacher({
     name: req.body.name,
-    // dutchClass: req.body.dutchClass,
+    dutchClass: req.body.dutchClass,
   })
+
+  console.log(newTeacher)
 
   try {
     await newTeacher.save()

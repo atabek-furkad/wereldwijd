@@ -71,7 +71,7 @@ form.search::after {
 
 .students-navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   /* align-items: center; */
 }
 
@@ -95,7 +95,7 @@ form.search::after {
   padding: 15px 0;
   position: sticky;
   top: 0;
-  background-color: aliceblue;
+  background-color: var(--color-rose);
   /* text-align: left; */
   /* color: var(--color-wheat); */
 }
@@ -132,5 +132,5 @@ form.search::after {
 
 .export-button-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }

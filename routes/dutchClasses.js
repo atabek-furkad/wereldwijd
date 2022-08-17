@@ -16,13 +16,18 @@ router.get('/', async (req, res) => {
 
 // new class route
 router.get('/new', async (req, res) => {
-  res.render('dutchClasses/new', { dutchClass: new DutchClass() })
+  const teachers = await Teacher.find({})
+  res.render('dutchClasses/new', {
+    dutchClass: new DutchClass(),
+    teachers: teachers,
+  })
 })
 
 // create class route
 router.post('/', async (req, res) => {
   const newDutchClass = new DutchClass({
     name: req.body.name,
+    teacher: req.body.teacher,
   })
   try {
     await newDutchClass.save()

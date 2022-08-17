@@ -1,6 +1,16 @@
-<h2>All Dutch classes</h2>
+<div class="dutch-classes-container">
+  <h2>Dutch Classes</h2>
 
-<% dutchClasses.forEach(dutchClass => { %>
-<div><%= dutchClass.name %></div>
-<a href="/dutch-classes/<%= dutchClass.id %>">View</a>
-<% }) %>
+  <div class="dutch-class-list-container">
+    <a class="link-button" href="/dutch-classes/new">Dutch Class +</a>
+    <% dutchClasses.forEach(dutchClass => { %>
+
+    <a href="/dutch-classes/<%= dutchClass.id %>">
+      <div class="class-box">
+        <h4><%= dutchClass.name %></h4>
+      </div></a
+    >
+
+    <% }) %>
+  </div>
+</div>

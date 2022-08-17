@@ -2,6 +2,7 @@
 @import './navbar.css';
 @import './students.css';
 @import './fonts.css';
+@import './dutch-classes.css';
 
 * {
   padding: 0;

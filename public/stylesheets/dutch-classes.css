@@ -1,0 +1,23 @@
+.dutch-classes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dutch-class-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-self: flex-end;
+  gap: 20px;
+}
+
+.class-box {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: var(--color-rose);
+  border: 1px solid var(--color-wheat);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

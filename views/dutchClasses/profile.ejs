@@ -1,12 +1,7 @@
 <h2>Class Name: <%= dutchClass.name %></h2>
-
 <h3>Teachers:</h3>
-<% teachers.forEach(teacher => { %>
-<h4><%= teacher.name %></h4>
-<% }) %>
-<br />
-<br />
-<h3>Students:</h3>
-<% students.forEach(student => { %>
-<h4><%= student.name %></h4>
-<% }) %>
+<div>
+  <% teachers.forEach(teacher => { %>
+  <h4><%= teacher %></h4>
+  <% }) %>
+</div>

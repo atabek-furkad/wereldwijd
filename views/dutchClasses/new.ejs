@@ -1,7 +1,7 @@
 <h2>New Dutch Class</h2>
 <form action="/dutch-classes" method="POST">
   <input type="text" name="name" />
-  <select name="teacher">
+  <select name="teacher" multiple>
     <option disabled selected value="null">- select teacher -</option>
     <% teachers.forEach(teacher => { %> <% if (teacher.id == teacher.dutchClass)
     { %>

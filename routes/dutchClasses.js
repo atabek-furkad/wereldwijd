@@ -40,11 +40,26 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const dutchClass = await DutchClass.findById(req.params.id)
-    const students = await Student.find({ dutchClass: req.params.id })
-    const teachers = await Teacher.find({ dutchClass: req.params.id })
+
+    const populateTeachers = await dutchClass.populate('teacher')
+
+    const teachers = populateTeachers.teacher.map((element) => element.name)
+
+    console.log(teachers)
+    // const teachers = await dutchClass.
+
+    // console.log(teachers)
+
+    // const students = await Student.find({ dutchClass: req.params.id })
+    // const teachers = await Teacher.find({ dutchClass: req.params.id })
+
+    // const teachersID = dutchClass.teacher.map((teacher) => {
+    //   return teacher
+    // })
+
+    // console.log(teachers)
     res.render('dutchClasses/profile', {
       dutchClass: dutchClass,
-      students: students,
       teachers: teachers,
     })
   } catch (error) {}

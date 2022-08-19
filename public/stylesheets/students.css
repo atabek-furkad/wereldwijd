@@ -134,3 +134,42 @@ form.search::after {
   display: flex;
   justify-content: space-between;
 }
+
+/* student details */
+
+.student-details {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.student-image-box {
+  /* height: 600px; */
+}
+
+.student-image-box img {
+  height: 250px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.filepond--credits {
+  display: none;
+}
+
+.filepond--root > * {
+  cursor: pointer;
+}
+
+.filepond--drop-label label {
+  display: none !important;
+}
+
+.filepond--drop-label:after {
+  content: 'Drop Image';
+  /* color: var(--color-wheat);
+  background-color: var(--color-orange); */
+  border-radius: 5px;
+  padding: 10px;
+}

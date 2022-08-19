@@ -1,28 +1,58 @@
-<label>Name</label> <input type="text" name="name" value="<%=student.name %>" />
-<br>
-<label>Dutch Class</label>
-<select name="dutchClass">
-  <option disabled selected value="null"> - select class - </option>
-  <% dutchClasses.forEach(dutchClass => { %>
-    <% if (dutchClass.id == student.dutchClass) { %>
-      <option selected label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
-    <% } else { %>
-      <option label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
-    <% } %>
-  <% }) %> 
-</select>
-<br>
-<label>Date of Birth</label>
-<input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
-<br>
-<label>Preferred Language</label> <input type="text" name="preferredLanguage" value="<%=student.preferredLanguage %>"></input>
-<br>
-<label>Country</label> <input type="text" name="country" value="<%=student.country %>"></input>
-<br>
-<div style="width: 200px">
-<label>Cover</label> <input type="file" name="cover" class="filepond">
+<div class="student-details">
+  <div class="student-image-box">
+    <% if (student.coverImagePath != null) { %>
+    <img
+      style="object-fit: cover; border-radius: 5px"
+      src="<%= student.coverImagePath %>"
+      alt=""
+    />
+    <% } else {  %> 
+      <img
+      src="/icons/avatar.png"
+      alt=""
+    />
+    <% } %> 
+    <input type="file" name="cover" class="filepond">
+  </div>
+  <div class="student-details-box">
+    <div>
+      <label>Name</label> 
+      <input type="text" name="name" value="<%=student.name %>" />
+    </div>
+    <div>
+      <label>Dutch Class</label>
+      <select name="dutchClass">
+        <option disabled selected value="null"> - select class - </option>
+        <% dutchClasses.forEach(dutchClass => { %>
+          <% if (dutchClass.id == student.dutchClass) { %>
+            <option selected label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+          <% } else { %>
+            <option label="<%= dutchClass.name %>" value="<%= dutchClass.id %>"></option>
+          <% } %>
+        <% }) %> 
+      </select>
+    </div>
+    <div>
+      <label>Date of Birth</label>
+      <input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
+    </div>
+  </div>
+  <div>
+    <div>
+      <label>Preferred Language</label> <input type="text" name="preferredLanguage" value="<%=student.preferredLanguage %>"></input>
+    </div>
+    <div>
+      <label>Country</label> <input type="text" name="country" value="<%=student.country %>"></input>
+    </div>
+  </div>
+  
 </div>
+<!-- <div>
+  <label>Attach File</label>
+  <input type="file" name="attachedFile" multiple="multiple">
+</div> -->
 
 
-<label>Attach File</label>
-<input type="file" name="attachedFile" multiple="multiple">
+
+
+

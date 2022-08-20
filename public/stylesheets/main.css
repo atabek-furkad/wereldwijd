@@ -54,6 +54,21 @@ h4 {
   text-align: center;
   text-transform: unset;
   /* box-shadow: 0 0 5px 5px var(--color-wheat); */
+  border: none;
+}
+
+.link-button-light {
+  padding: 10px;
+  font-size: 16px;
+  /* border: 1px solid var(--color-xiketic); */
+  background-color: var(--color-rose);
+  border-radius: 5px;
+  color: var(--color-orange);
+  cursor: pointer;
+  text-align: center;
+  text-transform: unset;
+  /* box-shadow: 0 0 5px 5px var(--color-wheat); */
+  border: none;
 }
 
 .link-button:hover {

@@ -15,11 +15,11 @@
     <input type="file" name="cover" class="filepond">
   </div>
   <div class="student-details-box">
-    <div>
+    <div class="input-box">
       <label>Name</label> 
       <input type="text" name="name" value="<%=student.name %>" />
     </div>
-    <div>
+    <div class="input-box">
       <label>Dutch Class</label>
       <select name="dutchClass">
         <option disabled selected value="null"> - select class - </option>
@@ -32,26 +32,29 @@
         <% }) %> 
       </select>
     </div>
-    <div>
+    <div class="input-box">
       <label>Date of Birth</label>
       <input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
     </div>
   </div>
-  <div>
-    <div>
+  <div class="student-details-box">
+    <div class="input-box">
       <label>Preferred Language</label> <input type="text" name="preferredLanguage" value="<%=student.preferredLanguage %>"></input>
     </div>
-    <div>
+    <div class="input-box">
       <label>Country</label> <input type="text" name="country" value="<%=student.country %>"></input>
+    </div>
+    <div class="input-box">
+      <label>Notes</label>
+      <textarea name="notes" rows="4" placeholder="Add a note..."></textarea>
     </div>
   </div>
   
 </div>
-<!-- <div>
+<div class="attachment-navigation">
   <label>Attach File</label>
-  <input type="file" name="attachedFile" multiple="multiple">
-</div> -->
-
+  <input type="file" name="attachedFile" multiple="multiple" />
+</div>
 
 
 

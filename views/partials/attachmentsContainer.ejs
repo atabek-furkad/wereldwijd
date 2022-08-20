@@ -1,17 +1,18 @@
-<% if (student.attachedFilePath &&
-student.attachedFilePath.length > 0) { %> <%
-student.attachedFilePath.forEach(file => { %>
-<h3><%= file.name %></h3>
-<br />
-<a href="<%= file.source %> ">Download</a>
+<div class="attachment-container">
+  <% if (student.attachedFilePath &&
+  student.attachedFilePath.length > 0) { %> <%
+  student.attachedFilePath.forEach(file => { %>
+    <div class="attachment-box">
+      <h3><%= file.name %></h3>
+      <a class="link-button" href="<%= file.source %> ">Download</a>
+      <form
+        action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
+        method="POST"
+      >
+        <button class="link-button-light" type="submit">Delete</button>
+      </form>
+  </div>
 
-<form
-  action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
-  method="POST"
->
-  <button type="submit">Delete</button>
-</form>
-<br />
-<br />
 
-<% }) %> <% } %>
+  <% }) %> <% } %>
+</div>

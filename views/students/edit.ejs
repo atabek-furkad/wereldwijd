@@ -1,16 +1,17 @@
-<h2>Edit Student</h2>
-<form
-  action="/students/<%= student.id %>?_method=PUT"
-  method="POST"
-  enctype="multipart/form-data"
->
-  <%- include('_form_fields') %>
-  <br />
-  <br />
-  <div>
-    <a href="/students/<%=student.id %>">Cancel</a>
-    <button type="submit">Update</button>
-  </div>
-</form>
-<br />
-<%- include("../partials/attachmentsContainer.ejs") %>
+<div class="students-container">
+  <h2>Edit Student</h2>
+  <form
+    action="/students/<%= student.id %>?_method=PUT"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <%- include('_form_fields') %>
+
+    <div class="edit-button-container">
+      <a class="link-button-light" href="/students/<%=student.id %>">Cancel</a>
+      <button class="link-button" type="submit">Update</button>
+    </div>
+  </form>
+
+  <%- include("../partials/attachmentsContainer.ejs") %>
+</div>

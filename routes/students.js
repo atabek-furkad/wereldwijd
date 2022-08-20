@@ -189,7 +189,7 @@ router.delete('/delete-attachment/:id', async (req, res) => {
 
   let student
   try {
-    student = await Student.updateOne(
+    student = await Student.update(
       ({ _id: profileID },
       { $pull: { attachment: { fileName: attachmentID } } }),
     )

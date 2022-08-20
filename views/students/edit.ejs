@@ -8,6 +8,16 @@
     <div><%- include('_form_fields.ejs') %></div>
 
     <div class="submit-button-container">
+      <label class="upload-container">
+        <input
+          class="file-upload"
+          type="file"
+          name="attachedFile"
+          multiple="multiple"
+        />
+
+        <img src="/icons/upload_attachemnt.png" width="30" />
+      </label>
       <a class="link-button-light" href="/students/<%=student.id %>">Cancel</a>
       <button class="link-button" type="submit">Update</button>
     </div>

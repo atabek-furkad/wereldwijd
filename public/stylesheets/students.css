@@ -95,8 +95,8 @@ form.search::after {
   padding: 15px 0;
   position: sticky;
   top: 0;
-  background-color: var(--color-rose);
-  /* text-align: left; */
+  background-color: var(--color-green);
+
   /* color: var(--color-wheat); */
 }
 
@@ -124,7 +124,7 @@ form.search::after {
 }
 
 #tableData tbody tr:hover {
-  background-color: var(--color-xiketic);
+  background-color: var(--color-manatee);
   color: var(--color-rose);
 }
 
@@ -141,7 +141,7 @@ form.search::after {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  height: 550px;
+  /* height: 550px; */
   /* border: 2px solid var(--color-orange); */
   /* background-color: var(--color-xiketic); */
   /* padding: 10px; */
@@ -173,7 +173,7 @@ form.search::after {
 }
 
 .filepond--drop-label:after {
-  content: "Drop Student's Picture";
+  content: 'Drop Picture';
   /* color: var(--color-wheat);
   background-color: var(--color-orange); */
   border-radius: 5px;
@@ -206,15 +206,19 @@ textarea {
 
 .input-box input[type='text'],
 .input-box select,
-.input-box input[type='date'],
 .input-box textarea {
   padding: 10px;
   border-radius: 5px;
 }
 
+.input-box input[type='date'] {
+  padding: 9px 10px;
+  border-radius: 5px;
+}
+
 .input-box select {
-  -moz-appearance: none; /* Firefox */
-  -webkit-appearance: none; /* Safari and Chrome */
+  -moz-appearance: none;
+  -webkit-appearance: none;
   appearance: none;
 }
 
@@ -224,24 +228,32 @@ textarea {
 
 .submit-button-container {
   display: flex;
-
+  align-items: center;
   justify-content: end;
   gap: 10px;
 }
 
-.attachment-navigation input[type='file'] {
-  /* display: none; */
+/* .attachment-navigation input[type='file'] {
+  
 }
 
 .attachment-navigation {
   width: 220px;
   font-size: 16px;
-  /* padding: 10px; */
-  /* background-color: var(--color-rose); */
-  /* color: var(--color-orange); */
-  cursor: pointer;
+
+  
   border-radius: 5px;
   text-transform: unset;
+} */
+
+.file-upload {
+  display: none;
+}
+
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::-webkit-file-upload-button {

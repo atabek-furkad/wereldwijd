@@ -1,7 +1,7 @@
 .students-container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  /* padding: 10px; */
   gap: 30px;
 }
 
@@ -141,13 +141,16 @@ form.search::after {
   display: flex;
   flex-direction: row;
   gap: 30px;
+  height: 550px;
   /* border: 2px solid var(--color-orange); */
   /* background-color: var(--color-xiketic); */
   /* padding: 10px; */
 }
 
 .student-image-box {
-  /* height: 600px; */
+  /* height: 600px;
+  width: 200px;
+  position: relative; */
 }
 
 .student-image-box img {
@@ -170,7 +173,7 @@ form.search::after {
 }
 
 .filepond--drop-label:after {
-  content: 'Drop Image';
+  content: "Drop Student's Picture";
   /* color: var(--color-wheat);
   background-color: var(--color-orange); */
   border-radius: 5px;
@@ -219,7 +222,7 @@ textarea {
   resize: vertical;
 }
 
-.edit-button-container {
+.submit-button-container {
   display: flex;
 
   justify-content: end;
@@ -235,14 +238,14 @@ textarea {
   font-size: 16px;
   /* padding: 10px; */
   /* background-color: var(--color-rose); */
-  color: var(--color-orange);
+  /* color: var(--color-orange); */
   cursor: pointer;
   border-radius: 5px;
   text-transform: unset;
 }
 
 ::-webkit-file-upload-button {
-  background-color: var(--color-wheat);
+  background-color: var(--color-rose);
   /* color: var(--color-wheat); */
   padding: 10px;
   outline: none;
@@ -256,11 +259,37 @@ textarea {
   color: red;
 } */
 
-/* .attachment-container {
-  display: flex;
-}
-
-.attachments-box {
+.attachment-container {
   display: flex;
   flex-direction: column;
-} */
+  /* border: 1px solid blue; */
+  gap: 20px;
+  /* padding: 10px; */
+}
+
+.attached-files-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  gap: 30px;
+}
+
+.attached-file-box {
+  border: 1px solid var(--color-rose);
+  background-color: var(--color-rose);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.attached-buttons {
+  display: flex;
+  gap: 10px;
+  align-self: flex-end;
+}
+
+.attached-buttons-image {
+  width: 20px;
+}

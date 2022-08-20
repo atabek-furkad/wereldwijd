@@ -1,18 +1,21 @@
 <div class="attachment-container">
+
+  <div class="attached-files-container">
   <% if (student.attachedFilePath &&
   student.attachedFilePath.length > 0) { %> <%
-  student.attachedFilePath.forEach(file => { %>
-    <div class="attachment-box">
-      <h3><%= file.name %></h3>
-      <a href="<%= file.source %> ">Download</a>
-      <form
-        action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
-        method="POST"
-      >
-        <button  type="submit">Delete</button>
-      </form>
-  </div>
-
-
+    student.attachedFilePath.forEach(file => { %>
+      <div class="attached-file-box">
+        <h5><%= file.name %></h5>
+        <div class="attached-buttons">
+          <a href="<%= file.source %> "><img class="attached-buttons-image"  src="/icons/download_attachment.png"></a>
+          <form
+            action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
   <% }) %> <% } %>
+  </div>
 </div>

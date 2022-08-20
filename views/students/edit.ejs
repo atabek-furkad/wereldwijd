@@ -5,11 +5,12 @@
     method="POST"
     enctype="multipart/form-data"
   >
-    <%- include('_form_fields') %>
+    <div><%- include('_form_fields.ejs') %></div>
 
-    <div class="edit-button-container">
+    <div class="submit-button-container">
       <a class="link-button-light" href="/students/<%=student.id %>">Cancel</a>
       <button class="link-button" type="submit">Update</button>
     </div>
   </form>
 </div>
+<%- include('../partials/attachmentsContainer.ejs') %>

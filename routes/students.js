@@ -132,6 +132,9 @@ router.put('/:id', upload.array('attachedFile'), async (req, res) => {
     student.preferredLanguage = req.body.preferredLanguage
     student.country = req.body.country
     student.dutchClass = req.body.dutchClass
+    student.telNumber = req.body.telNumber
+    student.email = req.body.email
+    student.notes = req.body.notes
 
     if (req.body.cover != '') {
       saveCover(student, req.body.cover)
@@ -144,7 +147,7 @@ router.put('/:id', upload.array('attachedFile'), async (req, res) => {
     // --- end of attached files addition ---
 
     await student.save()
-    res.redirect(`/students/${student.id}`)
+    res.redirect(`/students/${student.id}/edit`)
   } catch (error) {
     if (student == null) {
       res.redirect('/')
@@ -181,14 +184,17 @@ router.delete('/delete-attachment/:id', async (req, res) => {
   const profileID = `${req.params.id.split('__')[0]}`
   const attachmentID = `${req.params.id.split('__')[1]}`
 
+  console.log(profileID)
+  console.log(attachmentID)
+
   let student
   try {
-    student = await Student.update(
+    student = await Student.updateOne(
       ({ _id: profileID },
       { $pull: { attachment: { fileName: attachmentID } } }),
     )
     removeAttachedFile(attachmentID)
-    res.redirect(`/students/${profileID}`)
+    res.redirect(`/students/${profileID}/edit`)
   } catch (error) {
     console.error(error)
     res.redirect(`/students}`)

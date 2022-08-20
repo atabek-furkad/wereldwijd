@@ -2,14 +2,11 @@
   <div class="student-image-box">
     <% if (student.coverImagePath != null) { %>
     <img
-      style="object-fit: cover; border-radius: 5px"
       src="<%= student.coverImagePath %>"
-      alt=""
     />
     <% } else {  %> 
       <img
       src="/icons/avatar.jpeg"
-      alt=""
     />
     <% } %> 
     <input type="file" name="cover" class="filepond">

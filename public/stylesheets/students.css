@@ -116,11 +116,11 @@ form.search::after {
 }
 
 #tableData tbody tr:nth-child(even) {
-  background-color: var(--color-rose);
+  background-color: var(--color-wheat);
 }
 
 #tableData tbody tr:nth-child(odd) {
-  background-color: var(--color-wheat);
+  background-color: var(--color-rose);
 }
 
 #tableData tbody tr:hover {
@@ -148,9 +148,9 @@ form.search::after {
 }
 
 .student-image-box {
-  /* height: 600px;
+  height: 600px;
   width: 200px;
-  position: relative; */
+  position: relative;
 }
 
 .student-image-box img {
@@ -159,6 +159,19 @@ form.search::after {
   object-fit: cover;
   border-radius: 5px;
 }
+
+/* .filepond--root {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 250px;
+  opacity: 0.8;
+  background: transparent;
+}
+
+.filepond--root .filepond--drop-label {
+  height: 250px;
+} */
 
 .filepond--credits {
   display: none;
@@ -172,10 +185,12 @@ form.search::after {
   display: none !important;
 }
 
+.filepond--root .filepond--drop-label {
+  background: transparent;
+}
+
 .filepond--drop-label:after {
   content: 'Drop Picture';
-  /* color: var(--color-wheat);
-  background-color: var(--color-orange); */
   border-radius: 5px;
   padding: 10px;
 }
@@ -254,6 +269,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 ::-webkit-file-upload-button {

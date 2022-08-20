@@ -38,6 +38,18 @@ const studentSchema = new mongoose.Schema({
     required: true,
     ref: 'DutchClass',
   },
+  telNumber: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  notes: {
+    type: String,
+    required: true,
+  },
 })
 
 studentSchema.virtual('attachedFilePath').get(function () {

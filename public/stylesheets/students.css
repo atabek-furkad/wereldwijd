@@ -195,11 +195,18 @@ form.search::after {
   /* padding-left: 10px; */
 }
 
+select,
+textarea {
+  border-width: 2px;
+  border-style: inset;
+}
+
 .input-box input[type='text'],
 .input-box select,
 .input-box input[type='date'],
 .input-box textarea {
   padding: 10px;
+  border-radius: 5px;
 }
 
 .input-box select {
@@ -220,22 +227,25 @@ form.search::after {
 }
 
 .attachment-navigation input[type='file'] {
-  display: none;
+  /* display: none; */
 }
 
 .attachment-navigation {
-  padding: 10px;
+  width: 220px;
   font-size: 16px;
-  width: max-content;
-  /* border: 1px solid var(--color-xiketic); */
-  background-color: var(--color-rose);
-  border-radius: 5px;
+  /* padding: 10px; */
+  /* background-color: var(--color-rose); */
   color: var(--color-orange);
   cursor: pointer;
-  text-align: center;
+  border-radius: 5px;
   text-transform: unset;
-  /* box-shadow: 0 0 5px 5px var(--color-wheat); */
-  border: none;
+}
+
+::-webkit-file-upload-button {
+  background-color: var(--color-wheat);
+  /* color: var(--color-wheat); */
+  padding: 10px;
+  outline: none;
 }
 
 /* .attachment-navigation input[type='button'] {

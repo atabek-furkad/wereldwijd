@@ -60,6 +60,9 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
     preferredLanguage: req.body.preferredLanguage,
     country: req.body.country,
     dutchClass: req.body.dutchClass,
+    telNumber: req.body.telNumber,
+    email: req.body.email,
+    notes: req.body.notes,
   })
 
   // check if there is an image to save

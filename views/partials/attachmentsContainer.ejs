@@ -4,12 +4,12 @@
   student.attachedFilePath.forEach(file => { %>
     <div class="attachment-box">
       <h3><%= file.name %></h3>
-      <a class="link-button" href="<%= file.source %> ">Download</a>
+      <a href="<%= file.source %> ">Download</a>
       <form
         action="/students/delete-attachment/<%= student.id %>__<%= file.source.split("/")[3] %>?_method=DELETE"
         method="POST"
       >
-        <button class="link-button-light" type="submit">Delete</button>
+        <button  type="submit">Delete</button>
       </form>
   </div>
 

@@ -8,7 +8,7 @@
     />
     <% } else {  %> 
       <img
-      src="/icons/avatar.png"
+      src="/icons/avatar.jpeg"
       alt=""
     />
     <% } %> 
@@ -18,6 +18,18 @@
     <div class="input-box">
       <label>Name</label> 
       <input type="text" name="name" value="<%=student.name %>" />
+    </div>
+    <div class="input-box">
+      <label>Date of Birth</label>
+      <input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
+    </div>
+    <div class="input-box">
+      <label>Telephone Number</label>
+      <input type="text" name="telNumber" value="<%= student.telNumber %> ">
+    </div>
+    <div class="input-box">
+      <label>Email</label>
+      <input type="text" name="email" value="<%= student.email %> ">
     </div>
     <div class="input-box">
       <label>Dutch Class</label>
@@ -32,10 +44,7 @@
         <% }) %> 
       </select>
     </div>
-    <div class="input-box">
-      <label>Date of Birth</label>
-      <input type="date" name="birthDate" value="<%= student.birthDate == null ? '' : student.birthDate.toISOString().split('T')[0] %>">
-    </div>
+    
   </div>
   <div class="student-details-box">
     <div class="input-box">
@@ -46,15 +55,21 @@
     </div>
     <div class="input-box">
       <label>Notes</label>
-      <textarea name="notes" rows="4" placeholder="Add a note..."></textarea>
+      <textarea name="notes"><%= student.notes %> </textarea>
     </div>
   </div>
   
 </div>
-<div class="attachment-navigation">
-  <label>Attach File</label>
-  <input type="file" name="attachedFile" multiple="multiple" />
+<div class="attachment-container">
+  <div class="attachment-navigation">
+    <!-- <label>Attach File</label> -->
+    <input type="file" name="attachedFile" multiple="multiple" />
+  </div>
+  <div>
+    <%- include("../partials/attachmentsContainer.ejs") %>
+  </div>
 </div>
+
 
 
 

@@ -7,7 +7,7 @@ const teacherSchema = new mongoose.Schema({
   },
   dutchClass: {
     type: mongoose.Schema.Types.ObjectId,
-    // required: true,
+    required: true,
     ref: 'DutchClass',
   },
 })

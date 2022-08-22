@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 // new class route
 router.get('/new', async (req, res) => {
-  const teachers = await Teacher.find({})
+  // const teachers = await Teacher.find({})
   res.render('dutchClasses/new', {
     dutchClass: new DutchClass(),
-    teachers: teachers,
+    // teachers: teachers,
   })
 })
 
@@ -27,7 +27,7 @@ router.get('/new', async (req, res) => {
 router.post('/', async (req, res) => {
   const newDutchClass = new DutchClass({
     name: req.body.name,
-    teacher: req.body.teacher,
+    // teacher: req.body.teacher,
   })
   try {
     await newDutchClass.save()
@@ -41,11 +41,11 @@ router.get('/:id', async (req, res) => {
   try {
     const dutchClass = await DutchClass.findById(req.params.id)
 
-    const populateTeachers = await dutchClass.populate('teacher')
+    // const populateTeachers = await dutchClass.populate('teacher')
 
-    const teachers = populateTeachers.teacher.map((element) => element.name)
+    // const teachers = populateTeachers.teacher.map((element) => element.name)
 
-    console.log(teachers)
+    console.log(dutchClass)
     // const teachers = await dutchClass.
 
     // console.log(teachers)
@@ -60,7 +60,7 @@ router.get('/:id', async (req, res) => {
     // console.log(teachers)
     res.render('dutchClasses/profile', {
       dutchClass: dutchClass,
-      teachers: teachers,
+      // teachers: teachers,
     })
   } catch (error) {}
 })

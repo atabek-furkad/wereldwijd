@@ -5,13 +5,13 @@ const dutchClassSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  teacher: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'Teacher',
-    },
-  ],
+  // teacher: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     required: true,
+  //     ref: 'Teacher',
+  //   },
+  // ],
 })
 
 module.exports = mongoose.model('DutchClass', dutchClassSchema)

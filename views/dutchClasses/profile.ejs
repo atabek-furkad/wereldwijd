@@ -1,30 +1,34 @@
-<h2>Class Name: <%= dutchClass.name %></h2>
-<!-- <h3>Teachers:</h3> -->
+<div class="main-section-container">
+  <h2>Class Name: <%= dutchClass.name %></h2>
+  <!-- <h3>Teachers:</h3> -->
 
-<form action="/dutch-classes/<%= dutchClass.id %>?_method=POST" method="POST">
-  <div class="table-container">
-    <table id="presenceTable">
-      <thead>
-        <tr>
-          <th>Present</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% students.forEach(student => { %>
-        <tr>
-          <td>
-            <input
-              type="checkbox"
-              name="presentStudent"
-              value="<%= student.id %>"
-            />
-          </td>
-          <td><%= student.name %></td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-  <button type="submit">Send</button>
-</form>
+  <form action="/dutch-classes/<%= dutchClass.id %>?_method=POST" method="POST">
+    <div class="table-container">
+      <table id="presenceTable" class="listing-table">
+        <thead>
+          <tr>
+            <th>Present</th>
+            <th>Name</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                name="presentStudent"
+                value="<%= student.id %>"
+              />
+            </td>
+            <td><%= student.name %></td>
+            <td><%= student.country %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <button class="link-button" type="submit">Send</button>
+  </form>
+</div>

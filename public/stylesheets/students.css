@@ -1,10 +1,3 @@
-.students-container {
-  display: flex;
-  flex-direction: column;
-  /* padding: 10px; */
-  gap: 30px;
-}
-
 h2 {
   text-align: center;
   font-weight: 800;
@@ -74,61 +67,6 @@ form.search::after {
   justify-content: flex-end;
   /* align-items: center; */
 }
-
-/* Table styles */
-
-.table-container {
-  /* padding: 10px 20px; */
-  /* background-color: var(--color-xiketic); */
-  /* border-radius: 10px;s */
-  color: var(--color-xiketic);
-  height: 320px;
-  overflow: auto;
-}
-
-#tableData {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#tableData th {
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  background-color: var(--color-green);
-
-  /* color: var(--color-wheat); */
-}
-
-#tableData th td {
-  background-color: transparent;
-}
-
-#tableData td {
-  padding: 5px 0;
-  text-align: center;
-  /* background-color: #0b7dda;
-  border: 1px solid black; */
-}
-
-#tableData tbody tr {
-  transition: 0.2s ease-in-out;
-}
-
-#tableData tbody tr:nth-child(even) {
-  background-color: var(--color-wheat);
-}
-
-#tableData tbody tr:nth-child(odd) {
-  background-color: var(--color-rose);
-}
-
-#tableData tbody tr:hover {
-  background-color: var(--color-manatee);
-  color: var(--color-rose);
-}
-
-/* end table */
 
 .export-button-container {
   display: flex;

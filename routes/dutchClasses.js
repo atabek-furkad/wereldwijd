@@ -7,10 +7,47 @@ const ClassPresence = require('../models/classPresence')
 
 // all classes route
 router.get('/', async (req, res) => {
+  const timeRange = {}
+
+  if (req.query.presenceDate != null && req.query.presenceDate != '') {
+    timeRange.start = new Date(req.query.presenceDate)
+
+    const nextDay = new Date(
+      new Date(req.query.presenceDate).setDate(
+        new Date(req.query.presenceDate).getDate() + 1,
+      ),
+    )
+    timeRange.end = nextDay
+  }
+
+  // console.log(timeRange)
+
   try {
+    const presenceList = await ClassPresence.findOne({
+      createdAt: {
+        $gte: timeRange.start,
+        $lte: timeRange.end,
+      },
+    })
+
+    // console.log(presenceList)
+
+    let presentStudents
+
+    if (presenceList != null) {
+      presentStudents = await presenceList.populate('presenceList')
+    }
+
+    // const listStudents = await presenceList.populate('presenceList')
+
+    // console.log(presentStudents)
+
     const dutchClasses = await DutchClass.find({})
+
+    console.log(dutchClasses)
     res.render('dutchClasses/index', {
       dutchClasses: dutchClasses,
+      presentStudents: presentStudents,
     })
   } catch (error) {}
 })

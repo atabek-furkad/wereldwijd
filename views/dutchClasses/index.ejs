@@ -1,5 +1,28 @@
 <div class="dutch-classes-container">
   <h2>Dutch Classes</h2>
+  <div class="table-container">
+    <table class="listing-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (presentStudents != null) { %> <%
+        presentStudents.presenceList.forEach(student => { %>
+
+        <tr>
+          <td><%= student.name%></td>
+          <td><%= student.preferredLanguage %></td>
+          <td><%= student.country %></td>
+        </tr>
+        <% }) %> <% } else { %> <% } %>
+      </tbody>
+    </table>
+  </div>
+
 
   <div class="dutch-class-list-container">
     <a class="link-button" href="/dutch-classes/new">Dutch Class +</a>
@@ -12,5 +35,13 @@
     >
 
     <% }) %>
+  </div>
+
+    <form action="/dutch-classes" method="GET">
+      <input type="date" name="presenceDate" value="<% Date.now() %>" />
+      <button type="submit">Show</button>
+    </form>
+
+    
   </div>
 </div>

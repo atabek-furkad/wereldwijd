@@ -4,6 +4,7 @@ const fs = require('fs')
 const router = express.Router()
 const Student = require('../models/student')
 const DutchClass = require('../models/dutchClass')
+// const ClassPresence = require('../models/classPresence')
 const multer = require('multer')
 const uploadPath = path.join('public', Student.attachedFileBasePath)
 const fileMimeTypes = ['application/pdf']
@@ -21,21 +22,28 @@ const imageMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg']
 // all students route
 router.get('/', async (req, res) => {
   let searchOptions = {}
+
   if (req.query.name != null && req.query.name != '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
   }
-  if (req.query.country != null && req.query.country != '') {
-    searchOptions.country = new RegExp(req.query.country, 'i')
-  }
+
+  // console.log(searchOptions)
+  
+  // if (req.query.country != null && req.query.country != '') {
+  //   searchOptions.country = new RegExp(req.query.country, 'i')
+  // }
   try {
     const students = await Student.find(searchOptions).populate('dutchClass')
+    // console.log(students)
 
     res.render('students/index', {
       students: students,
       searchOptions: req.query,
+      // presentStudents: presentStudents,
     })
   } catch (error) {
     res.redirect('/')
+    console.log(error)
   }
 })
 

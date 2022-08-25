@@ -58,6 +58,18 @@ button {
   cursor: pointer;
 }
 
+a {
+  outline: none;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:focus,
+button:focus {
+  outline: 1px solid var(--color-rose);
+  box-shadow: 0 0 10px var(--color-manatee);
+}
+
 .link-button {
   padding: 10px;
   font-size: 16px;
@@ -96,11 +108,6 @@ button {
 ul li {
   list-style-type: none;
   /* text-align: right; */
-}
-
-a {
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .delete-button {

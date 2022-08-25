@@ -7,6 +7,8 @@ const ClassPresence = require('../models/classPresence')
 
 // all classes route
 router.get('/', async (req, res) => {
+  // let today = new Date().toISOString().substr(0, 10);
+
   const timeRange = {}
 
   if (req.query.presenceDate != null && req.query.presenceDate != '') {
@@ -44,7 +46,7 @@ router.get('/', async (req, res) => {
 
     const dutchClasses = await DutchClass.find({})
 
-    console.log(dutchClasses)
+    // console.log(presentStudents)
     res.render('dutchClasses/index', {
       dutchClasses: dutchClasses,
       presentStudents: presentStudents,

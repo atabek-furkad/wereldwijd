@@ -16,12 +16,88 @@
   padding: 20px;
   background-color: var(--color-rose);
   border: 1px solid var(--color-wheat);
+  color: var(--color-xiketic);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+.class-box:hover,
+.class-box:hover h4 {
+  background-color: var(--color-xiketic);
+  color: var(--color-rose);
+}
+
 .dutch-container {
+  /* border: 1px solid black; */
+  width: 100%;
   display: flex;
   gap: 20px;
+}
+
+.dutch-class-index {
+  flex-grow: 2;
+}
+
+.presence-date-picker-container {
+  align-self: flex-end;
+}
+
+.presence-date {
+  border-radius: 5px 0 0 5px;
+  border: 1.5px solid var(--color-orange);
+  float: left;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url('/icons/calendar.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 10px 0 0;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+  cursor: pointer;
+}
+
+.presence-date-button {
+  float: left;
+  width: min-content;
+  padding: 10px;
+  background-color: var(--color-orange);
+  color: white;
+  font-size: 16px;
+  border: 1px solid var(--color-orange);
+  border-left: none;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+}
+
+/* padding */
+::-webkit-datetime-edit {
+  /* background: var(--color-wheat); */
+  padding: 10px 0 10px 10px;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  /* background-color: blue; */
+}
+
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-year-field,
+::-webkit-datetime-edit-text {
+  color: var(--color-xiketic);
+  font-size: 26px;
+  cursor: text;
+}
+
+/* ::-webkit-inner-spin-button {
+  display: block;
+} */
+::-webkit-calendar-picker-indicator {
+  /* background: orange; */
 }

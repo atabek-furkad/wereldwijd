@@ -1,47 +1,52 @@
 <div class="dutch-classes-container">
-  <h2>Dutch Classes</h2>
-  <div class="table-container">
-    <table class="listing-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Language</th>
-          <th>Country</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if (presentStudents != null) { %> <%
-        presentStudents.presenceList.forEach(student => { %>
-
-        <tr>
-          <td><%= student.name%></td>
-          <td><%= student.preferredLanguage %></td>
-          <td><%= student.country %></td>
-        </tr>
-        <% }) %> <% } else { %> <% } %>
-      </tbody>
-    </table>
-  </div>
-
-
-  <div class="dutch-class-list-container">
-    <a class="link-button" href="/dutch-classes/new">Dutch Class +</a>
-    <% dutchClasses.forEach(dutchClass => { %>
-
-    <a href="/dutch-classes/<%= dutchClass.id %>">
-      <div class="class-box">
-        <h4><%= dutchClass.name %></h4>
-      </div></a
-    >
-
-    <% }) %>
-  </div>
-
+  <div class="presence-date-picker-container">
     <form action="/dutch-classes" method="GET">
-      <input type="date" name="presenceDate" value="<% Date.now() %>" />
-      <button type="submit">Show</button>
+      <input
+        class="presence-date"
+        type="date"
+        name="presenceDate"
+        value="<% if (presentStudents != null) 
+            {%><%= new Date(presentStudents.createdAt).toISOString().split('T')[0] %><%}%>"
+      />
+      <button type="submit" class="presence-date-button">Form</button>
     </form>
+  </div>
+  <h2>Dutch Classes</h2>
 
-    
+  <div class="dutch-container">
+    <div class="table-container dutch-class-index">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (presentStudents != null) { %> <%
+          presentStudents.presenceList.forEach(student => { %>
+
+          <tr>
+            <td><%= student.name%></td>
+            <td><%= student.preferredLanguage %></td>
+            <td><%= student.country %></td>
+          </tr>
+          <% }) %> <% } else { %> <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="dutch-class-list-container">
+      <a class="link-button" href="/dutch-classes/new">Dutch Class +</a>
+      <% dutchClasses.forEach(dutchClass => { %>
+
+      <a href="/dutch-classes/<%= dutchClass.id %>">
+        <div class="class-box">
+          <h4><%= dutchClass.name %></h4>
+        </div></a
+      >
+
+      <% }) %>
+    </div>
   </div>
 </div>

@@ -5,8 +5,8 @@
         class="presence-date"
         type="date"
         name="presenceDate"
-        value="<% if (presentStudents != null) 
-            {%><%= new Date(presentStudents.createdAt).toISOString().split('T')[0] %><%}%>"
+        value="<% if (presentStudentsList.length > 0) 
+            {%><%= new Date(presentStudentsList[0].createdAt).toISOString().split('T')[0] %><%}%>"
       />
       <button type="submit" class="presence-date-button">Form</button>
     </form>
@@ -24,15 +24,14 @@
           </tr>
         </thead>
         <tbody>
-          <% if (presentStudents != null) { %> <%
-          presentStudents.presenceList.forEach(student => { %>
-
+          <% presentStudentsList.forEach((element) => { %> <%
+          element.presenceList.forEach((student) => { %>
           <tr>
             <td><%= student.name%></td>
             <td><%= student.preferredLanguage %></td>
             <td><%= student.country %></td>
           </tr>
-          <% }) %> <% } else { %> <% } %>
+          <% }) %> <% }) %>
         </tbody>
       </table>
     </div>

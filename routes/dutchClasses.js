@@ -25,31 +25,42 @@ router.get('/', async (req, res) => {
   // console.log(timeRange)
 
   try {
-    const presenceList = await ClassPresence.findOne({
+    const presentStudentsList = await ClassPresence.find({
       createdAt: {
         $gte: timeRange.start,
         $lte: timeRange.end,
       },
-    })
+    }).populate('presenceList')
 
-    // console.log(presenceList)
+    console.log(presentStudentsList)
 
-    let presentStudents
+    // studentsList.forEach((element) => {
+    //   element.presenceList.forEach((student) => {
+    //     console.log(student.name)
+    //   })
+    //   // console.log(element.presenceList[1].name)
+    // })
 
-    if (presenceList != null) {
-      presentStudents = await presenceList.populate('presenceList')
-    }
+    // console.log(presentStudentsList)
+    // let presentStudents
+
+    // if (presenceList != null) {
+    //   // presentStudents = await presenceList.populate('presenceList')
+    //   const studentList = presenceList.forEach(async (element) => {
+    //     await element.populate('presenceList')
+    //   })
+
+    //   console.log(studentList)
+    // }
 
     // const listStudents = await presenceList.populate('presenceList')
-
-    // console.log(presentStudents)
 
     const dutchClasses = await DutchClass.find({})
 
     // console.log(presentStudents)
     res.render('dutchClasses/index', {
       dutchClasses: dutchClasses,
-      presentStudents: presentStudents,
+      presentStudentsList: presentStudentsList,
     })
   } catch (error) {}
 })

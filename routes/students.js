@@ -152,6 +152,7 @@ router.put('/:id', upload.array('attachedFile'), async (req, res) => {
     student.telNumber = req.body.telNumber
     student.email = req.body.email
     student.notes = req.body.notes
+    student.municipality = req.body.municipality
 
     if (req.body.cover != '') {
       saveCover(student, req.body.cover)

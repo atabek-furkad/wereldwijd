@@ -58,14 +58,14 @@
     <div class="input-box">
       <label>Municipality</label>
       <select name="municipality">
-        <% if (student.municipality != null) { %> 
-          <option label="<%= student.municipality %>" value="<%= student.municipality %>"></option>
-        <% } else { %>
-           <option disabled selected value="null"> - select municipality - </option>
-          <% municipalityList.forEach(municipality => { %>
+        <option disabled selected value="null"> - select municipality - </option>
+        <% municipalityList.forEach(municipality => { %>
+          <% if (student.municipality == municipality) { %>
+            <option selected label="<%= student.municipality %>" value="<%= student.municipality %>"></option>
+          <% } else { %>
             <option label="<%= municipality %>" value="<%= municipality %>"></option>
-          <% }) %> 
-        <% } %> 
+          <% } %> 
+        <% }) %> 
       </select>
     </div>
   </div>

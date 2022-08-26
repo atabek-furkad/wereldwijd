@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
       },
     }).populate('presenceList')
 
-    console.log(presentStudentsList)
+    // console.log(presentStudentsList)
 
     // studentsList.forEach((element) => {
     //   element.presenceList.forEach((student) => {
@@ -83,6 +83,7 @@ router.post('/', async (req, res) => {
   try {
     await newDutchClass.save()
 
+    console.log('new class created')
     res.redirect(`dutch-classes/`)
   } catch (error) {}
 })
@@ -127,6 +128,8 @@ router.post('/:id', async (req, res) => {
 
   try {
     await classPresence.save()
+    console.log('present list is formed')
+    res.redirect('/dutch-classes')
   } catch (error) {}
 
   // console.log(req.params.id)

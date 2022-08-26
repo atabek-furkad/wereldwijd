@@ -9,6 +9,12 @@ const multer = require('multer')
 const uploadPath = path.join('public', Student.attachedFileBasePath)
 const fileMimeTypes = ['application/pdf']
 
+const municipalityList = [
+  'Gemeente Maastricht',
+  'Gemeente Heerlen',
+  'Gemeente Sittard',
+]
+
 const upload = multer({
   dest: uploadPath,
   fileFilter: (req, file, callback) => {
@@ -28,7 +34,7 @@ router.get('/', async (req, res) => {
   }
 
   // console.log(searchOptions)
-  
+
   // if (req.query.country != null && req.query.country != '') {
   //   searchOptions.country = new RegExp(req.query.country, 'i')
   // }
@@ -54,6 +60,7 @@ router.get('/new', async (req, res) => {
     res.render('students/new', {
       student: new Student(),
       dutchClasses: dutchClasses,
+      municipalityList: municipalityList,
     })
   } catch (error) {}
 })
@@ -71,6 +78,7 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
     telNumber: req.body.telNumber,
     email: req.body.email,
     notes: req.body.notes,
+    municipality: req.body.municipality,
   })
 
   // check if there is an image to save
@@ -124,6 +132,7 @@ router.get('/:id/edit', async (req, res) => {
     res.render('students/edit', {
       student: student,
       dutchClasses: dutchClasses,
+      municipalityList: municipalityList,
     })
   } catch (error) {
     res.redirect('/students')

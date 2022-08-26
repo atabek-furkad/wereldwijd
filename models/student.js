@@ -50,6 +50,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  municipality: {
+    type: String,
+    // required: true,
+  },
 })
 
 studentSchema.virtual('attachedFilePath').get(function () {

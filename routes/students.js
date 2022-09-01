@@ -94,7 +94,7 @@ router.post('/', upload.array('attachedFile'), async (req, res) => {
   try {
     const newStudent = await student.save()
 
-    res.redirect(`students/${student.id}`)
+    res.redirect(`students/${student.id}/edit`)
   } catch (error) {
     let errorMessage = 'Error creating Student'
     if (student.dutchClass == null) {

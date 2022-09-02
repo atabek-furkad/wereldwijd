@@ -8,9 +8,7 @@ const municipalityList = require('../public/javascripts/municipalityList')
 
 // all classes route
 router.get('/', async (req, res) => {
-  // let today = new Date().toISOString().substr(0, 10);
-
-  console.log(req.query)
+  // console.log(today)
 
   const timeRange = {}
 
@@ -31,7 +29,7 @@ router.get('/', async (req, res) => {
     municipality = req.query.municipality
   }
 
-  console.log(municipality)
+  // console.log(municipality)
 
   try {
     const presentStudentsList = await ClassPresence.find({
@@ -44,7 +42,16 @@ router.get('/', async (req, res) => {
       match: { municipality: municipality },
     })
 
-    // console.log(presentStudentsList)
+    let today
+    if (req.query.presenceDate != null && req.query.presenceDate != '') {
+      today = new Date(presentStudentsList[0].createdAt)
+        .toISOString()
+        .split('T')[0]
+    } else {
+      today = new Date(Date.now()).toISOString().split('T')[0]
+    }
+
+    console.log(today)
 
     const dutchClasses = await DutchClass.find({})
 
@@ -52,6 +59,7 @@ router.get('/', async (req, res) => {
       dutchClasses: dutchClasses,
       presentStudentsList: presentStudentsList,
       municipalityList: municipalityList,
+      today: today,
     })
   } catch (error) {}
 })

@@ -4,10 +4,13 @@ const DutchClass = require('../models/dutchClass')
 const Student = require('../models/student')
 const Teacher = require('../models/teacher')
 const ClassPresence = require('../models/classPresence')
+const municipalityList = require('../public/javascripts/municipalityList')
 
 // all classes route
 router.get('/', async (req, res) => {
   // let today = new Date().toISOString().substr(0, 10);
+
+  console.log(req.query)
 
   const timeRange = {}
 
@@ -22,17 +25,41 @@ router.get('/', async (req, res) => {
     timeRange.end = nextDay
   }
 
-  // console.log(timeRange)
+  let municipality
+
+  if (req.query.municipality != null) {
+    municipality = req.query.municipality
+  }
+
+  console.log(municipality)
 
   try {
+    // const gemeenteList = await Student.find({
+    //   municipality,
+    // })
+
+    // console.log(gemeenteList)
+
     const presentStudentsList = await ClassPresence.find({
       createdAt: {
         $gte: timeRange.start,
         $lte: timeRange.end,
       },
-    }).populate('presenceList')
+    }).populate({
+      path: 'presenceList',
+      match: { municipality: municipality },
+    })
 
-    // console.log(presentStudentsList)
+    console.log(presentStudentsList)
+
+    // let presentStudentsListByMunicipality
+    // if (req.query.municipality != null) {
+    //   presentStudentsListByMunicipality = await presentStudentsList.presenceList.find(
+    //     { municipality },
+    //   )
+    // }
+
+    // console.log(presentStudentsListByMunicipality)
 
     // studentsList.forEach((element) => {
     //   element.presenceList.forEach((student) => {
@@ -57,10 +84,12 @@ router.get('/', async (req, res) => {
 
     const dutchClasses = await DutchClass.find({})
 
+    // console.log(municipalityList)
     // console.log(presentStudents)
     res.render('dutchClasses/index', {
       dutchClasses: dutchClasses,
       presentStudentsList: presentStudentsList,
+      municipalityList: municipalityList,
     })
   } catch (error) {}
 })

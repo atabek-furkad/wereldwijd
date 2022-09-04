@@ -1,17 +1,17 @@
-<div class="main-section-container">
-  <div class="students-navigation">
-    <form action="/students" class="search" method="GET">
-      <input
-        type="text"
-        name="name"
-        value="<%= searchOptions.name %>"
-        placeholder="Search by name..."
-      />
-      <button type="submit">
-        <i class="fa fa-search search-black-icon"></i>
-      </button>
+<!-- <div class="main-section-container"> -->
+<div class="students-navigation">
+  <form action="/students" class="search" method="GET">
+    <input
+      type="text"
+      name="name"
+      value="<%= searchOptions.name %>"
+      placeholder="Search by name..."
+    />
+    <button type="submit">
+      <i class="fa fa-search search-black-icon"></i>
+    </button>
 
-      <!-- <div>
+    <!-- <div>
         <label>Country</label>
         <input
           type="text"
@@ -19,80 +19,61 @@
           value="<%= searchOptions.country %>"
         />
       </div> -->
-    </form>
-  </div>
+  </form>
+</div>
 
-  <h2>Students</h2>
+<h2>Students</h2>
 
-  <div class="table-container">
-    <table id="tableData" class="listing-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Language</th>
-          <th>Country</th>
-          <th>Dutch Class</th>
-          <th>Municipality</th>
-          <th>View</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% students.forEach(student => { %>
-        <tr>
-          <td><%= student.name%></td>
-          <td><%= student.preferredLanguage %></td>
-          <td><%= student.country %></td>
-          <td><%= student.dutchClass.name %></td>
-          <td><%= student.municipality %></td>
-          <!-- <td>
+<div class="table-container">
+  <table id="tableData" class="listing-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Language</th>
+        <th>Country</th>
+        <th>Dutch Class</th>
+        <th>Municipality</th>
+        <th>View</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+      <tr>
+        <td><%= student.name%></td>
+        <td><%= student.preferredLanguage %></td>
+        <td><%= student.country %></td>
+        <td><%= student.dutchClass.name %></td>
+        <td><%= student.municipality %></td>
+        <!-- <td>
             <a href="/students/<%= student.id %>"
               ><img src="/icons/view.png" style="width: 40px"></i
             ></a>
           </td> -->
-          <td>
-            <a href="/students/<%= student.id %>/edit"
-              ><img src="/icons/view.png" style="width: 25px"
-            /></a>
-          </td>
-          <td>
-            <%- include("../partials/deleteForm.ejs", { url:
-            `/students/${student.id}` }) %>
-          </td>
-        </tr>
+        <td>
+          <a href="/students/<%= student.id %>/edit"
+            ><img src="/icons/view.png" style="width: 25px"
+          /></a>
+        </td>
+        <td>
+          <%- include("../partials/deleteForm.ejs", { url:
+          `/students/${student.id}` }) %>
+        </td>
+      </tr>
 
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-  <div class="export-button-container">
-    <a class="link-button" href="/students/new">Student +</a>
-    <a class="link-button" id="export-excel-file"> Export </a>
-  </div>
-  <!-- <% students.forEach(student => { %>
-  <div>
-    <%= student.name%> <%= student.dutchClass.name %> <%=
-    student.preferredLanguage %> <%= student.country %>
-    <div>
-      <% if (student.coverImagePath != null) { %>
-      <img
-        height="200"
-        width="150"
-        style="object-fit: cover"
-        src="<%= student.coverImagePath %>"
-        alt=""
-      />
-      <% } %>
-    </div>
-
-    <a href="/students/<%= student.id %>">View</a>
-
-    <a href="/students/<%= student.id %>/edit">Edit</a>
-
-    <%- include("../partials/deleteForm.ejs", { url: `/students/${student.id}`
-    }) %>
-  </div> -->
-  <br />
-  <br />
-  <!-- <% }) %> -->
+      <% }) %>
+    </tbody>
+  </table>
 </div>
+<div class="export-button-container">
+  <a class="link-button" href="/students/new">Student +</a>
+  <a
+    class="link-button"
+    id="export-excel-file"
+    style="padding-left: 20px; padding-right: 20px"
+  >
+    Export
+  </a>
+</div>
+
+<!-- </div> -->

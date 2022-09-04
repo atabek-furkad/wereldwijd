@@ -6,11 +6,10 @@ h2 {
 }
 
 form.search {
-  margin: 0 10px;
 }
 
 .search-black-icon {
-  color: var(--color-wheat);
+  color: var(--color-dark_gray);
 }
 
 form.search::after {
@@ -21,10 +20,10 @@ form.search::after {
 form.search input[type='text'] {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid var(--color-orange);
+  border: 1px solid transparent;
   float: left;
   width: 80%;
-  background: var(--color-rose);
+  background: rgb(234, 234, 234);
   border-radius: 5px 0 0 5px;
   /* text-transform: uppercase; */
   /* box-shadow: 0 0 5px 5px var(--color-wheat); */
@@ -32,7 +31,7 @@ form.search input[type='text'] {
 }
 
 form.search input[type='text']:focus {
-  background: var(--color-wheat);
+  /* background: var(--color-wheat); */
 }
 
 ::placeholder {
@@ -47,7 +46,7 @@ form.search button {
   background-color: var(--color-orange);
   color: white;
   font-size: 16px;
-  border: 1px solid var(--color-orange);
+  border: 1px solid transparent;
   border-left: none;
   cursor: pointer;
   border-radius: 0 5px 5px 0;
@@ -69,10 +68,14 @@ form.search::after {
   /* align-items: center; */
 }
 
+.inner-container h2 {
+  margin-bottom: 20px;
+}
+
 .export-button-container {
   display: flex;
   justify-content: space-between;
-  margin: 0 10px;
+  /* margin: 0 10px; */
 }
 
 /* student details */

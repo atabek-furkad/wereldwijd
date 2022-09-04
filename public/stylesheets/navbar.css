@@ -1,25 +1,47 @@
 
 header {
+  padding-top: var(--size-700);
   position: fixed;
   top: 0px;
+  background-color: rgba(235, 235, 235, 0.869);
   /* height: 100%; */
   /* border: 1px solid yellow; */
   /* margin: 0 auto; */
   width: 100%;
+ 
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+#logo {
+  margin-left: 100px;
+  width: 30px;
+  height: 30px;
 }
 
 header ul {
-  /* display: flex;
-  flex-direction: row; */
+ display: flex;
+ flex-direction: row;
   /* height: min-content; */
   /* justify-content: space-between; */
   /* border: 1px solid green; */
   /* width: 100%; */
 }
 
+nav {
+  display: flex;
+}
 
-.navbar-container {
-  width: 1250px;
+.navbar-container ul li {
+ 
+  display: flex;
+  flex-direction: row;
+
   /* background-color: var(--color-xiketic); */
   /* color: var(--color-wheat); */
 }
@@ -27,9 +49,9 @@ header ul {
 
 .navbar-container li {
   padding: 15px 20px;
-  color: var(--color-wheat);
+
   /* border: 5px solid red; */
-  border-radius: 5px 0 0 5px;
+  /* border-radius: 5px 0 0 5px; */
   margin: 0 0 0 10px;
 }
 
@@ -39,8 +61,8 @@ header ul {
 } */
 
 .navbar-container li:hover {
-  background-color: var(--color-wheat);
-  color: var(--color-xiketic);
+  background-color: var(--color-dark_gray);
+  color: var(--color-light_gray);
 }
 
 .navbar-container li:hover a {
@@ -49,9 +71,11 @@ header ul {
 
 .navbar-container a {
   color: var(--color-dark_gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
 }
 
 
 .main {
-  height: 2000px;
+  /* height: 2000px; */
 }

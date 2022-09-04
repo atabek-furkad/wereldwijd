@@ -6,7 +6,7 @@ h2 {
 }
 
 form.search {
-  max-width: 300px;
+  margin: 0 10px;
 }
 
 .search-black-icon {
@@ -72,6 +72,7 @@ form.search::after {
 .export-button-container {
   display: flex;
   justify-content: space-between;
+  margin: 0 10px;
 }
 
 /* student details */

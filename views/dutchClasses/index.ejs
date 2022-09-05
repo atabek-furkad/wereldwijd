@@ -1,10 +1,11 @@
 <div class="dutch-classes-container">
   <div class="presence-date-picker-container">
     <form action="/dutch-classes" method="GET">
-      <div>
+      <div class="municipality-container">
         <% municipalityList.forEach((municipality) => { %>
-        <div>
+        <div class="municipality-box">
           <input
+            class="checkbox-municipality"
             type="checkbox"
             id="<%= municipality%>"
             name="municipality"
@@ -25,11 +26,11 @@
       </div>
     </form>
   </div>
-  <h2>Dutch Classes</h2>
+  <h2>Present students list</h2>
 
   <div class="dutch-container">
     <div class="table-container dutch-class-index">
-      <table class="listing-table">
+      <table id="presence-list-data" class="listing-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -62,4 +63,15 @@
       <% }) %>
     </div>
   </div>
+</div>
+
+<div class="export-button-container">
+  <a
+    class="link-button"
+    id="export-presence-list"
+    style="padding-left: 20px; padding-right: 20px"
+  >
+    Export
+  </a>
+  <div></div>
 </div>

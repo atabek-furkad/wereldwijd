@@ -101,3 +101,29 @@
 ::-webkit-calendar-picker-indicator {
   /* background: orange; */
 }
+
+.municipality-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 10px 0;
+}
+
+.municipality-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type='checkbox'].checkbox-municipality {
+  /* text-align: center; */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  /* margin-right: 10px; */
+  background-color: var(--color-orange);
+}
+
+input[type='checkbox']:checked {
+  accent-color: var(--color-orange);
+}

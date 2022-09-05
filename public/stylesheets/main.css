@@ -72,7 +72,8 @@ body {
   font-size: var(--fs-body);
   font-family: var(--ff-body);
   color: var(--clr-primary-400);
-  overflow: hidden;
+  /* overflow: hidden; */
+  margin-bottom: 40px;
 }
 
 img,
@@ -130,7 +131,7 @@ button:focus {
 }
 
 .link-button {
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 16px;
   /* border: 1px solid var(--color-xiketic); */
   background-color: var(--color-orange);
@@ -144,7 +145,7 @@ button:focus {
 }
 
 .link-button-light {
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 16px;
   /* border: 1px solid var(--color-xiketic); */
   background-color: var(--color-rose);
@@ -180,11 +181,8 @@ ul li {
 
 .table-container {
   position: relative;
-  /* padding: 10px 20px; */
-  /* background-color: var(--color-xiketic); */
-  /* border-radius: 10px;*/
   color: var(--color-xiketic);
-  height: 440px;
+  height: 430px;
   overflow: auto;
 }
 

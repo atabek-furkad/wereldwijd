@@ -1,13 +1,26 @@
 import exportTableToExcel from './exportTable.js'
 // import highlightChosenSection from './navbar.js'
 
-if (document.getElementById('export-excel-file')) {
-  document.getElementById('export-excel-file').addEventListener('click', () => {
-    exportTableToExcel(
-      'tableData',
-      `${new Date().toJSON().slice(0, 10)}_students`,
-    )
-  })
+if (document.getElementById('export-student-list')) {
+  document
+    .getElementById('export-student-list')
+    .addEventListener('click', () => {
+      exportTableToExcel(
+        'student-list-data',
+        `${new Date().toJSON().slice(0, 10)}_student_list`,
+      )
+    })
+}
+
+if (document.getElementById('export-presence-list')) {
+  document
+    .getElementById('export-presence-list')
+    .addEventListener('click', () => {
+      exportTableToExcel(
+        'presence-list-data',
+        `${new Date().toJSON().slice(0, 10)}_presence_list`,
+      )
+    })
 }
 
 // export const presentList = []
